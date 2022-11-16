@@ -3,7 +3,6 @@
     "templates": [
         {
             "title": "Caddy",
-            "name": "caddy",
             "image": "caddy:latest",
             "description": "Still the only web server to use TLS automatically and by default. Deploy and scale HTTPS effortlessly with Caddy 2.",
             "categories": [
@@ -11,6 +10,11 @@
             ],
             "platform": "linux",
             "restart_policy": "unless-stopped",
+            "ports": [
+                "80:80/tcp",
+                "443:443/tcp",
+                "2019:2019/tcp"
+            ],
             "volumes": [
                 {
                     "container": "/etc/caddy",

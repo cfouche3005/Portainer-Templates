@@ -1,0 +1,33 @@
+{
+    "version": "2",
+    "templates": [
+        {
+            "title": "Caddy",
+            "name": "caddy",
+            "image": "caddy:latest",
+            "description": "Still the only web server to use TLS automatically and by default. Deploy and scale HTTPS effortlessly with Caddy 2.",
+            "categories": [
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/etc/caddy",
+                    "bind": "/portainer/Files/AppData/Config/Caddy/etc/caddy"
+                },
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Config/Caddy/data"
+                },
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Caddy/config"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/caddy.svg",
+            "network_mode": "host",
+            "type": 1
+        }
+    ]
+}

@@ -3,6 +3,7 @@
     "templates": [
         {
             "title": "Caddy",
+            "name": "caddy",
             "image": "caddy:latest",
             "description": "Still the only web server to use TLS automatically and by default. Deploy and scale HTTPS effortlessly with Caddy 2.",
             "categories": [
@@ -10,11 +11,6 @@
             ],
             "platform": "linux",
             "restart_policy": "unless-stopped",
-            "ports": [
-                "80:80/tcp",
-                "443:443/tcp",
-                "2019:2019/tcp"
-            ],
             "volumes": [
                 {
                     "container": "/etc/caddy",
@@ -32,6 +28,130 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/caddy.svg",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "Pritunl",
+            "image": "goofball222/pritunl:latest",
+            "description": "Enterprise Distributed OpenVPN, IPsec and WireGuard Server.",
+            "categories": [
+                "Web",
+                "VPN"
+            ],
+            "platform": "linux",
+            "note": "Docs : https://hub.docker.com/r/goofball222/pritunl",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "80:80/tcp",
+                "443:443/tcp",
+                "1194:1194/tcp",
+                "1194:1194/udp",
+                "1195:1195/udp",
+                "9700:9700/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/localtime:ro",
+                    "bind": "/etc/localtime"
+                }
+            ],
+            "env": [
+                {
+                    "name": "Debug",
+                    "default": "false",
+                    "label": "DEBUG",
+                    "description": "Set to true for extra entrypoint script verbosity for debugging"
+                },
+                {
+                    "name": "Mongodb URI",
+                    "default": "mongodb://mongo:27017/pritunl",
+                    "label": "MONGODB_URI",
+                    "description": "Sets the URI Pritunl will access for the Mongo DB instance"
+                },
+                {
+                    "name": "Pritunl Options",
+                    "default": "",
+                    "label": "PRITUNL_OPTS",
+                    "description": "Any additional custom run options for the container pritunl process"
+                },
+                {
+                    "name": "Reverse proxy",
+                    "default": "false",
+                    "label": "REVERSE_PROXY\t",
+                    "description": "Set to true to set the pritunl web interface to run in reverse-proxy mode (Traefik/nginx)"
+                },
+                {
+                    "name": "Wireguard",
+                    "default": "false",
+                    "label": "WIREGUARD",
+                    "description": "Set to true, Switches web interface back to port 443 and HTTPS if running wireguard with reverse-proxy (Traefik/nginx)"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pritunl.png",
+            "network_mode": "host",
+            "type": 1,
+            "privileged": true
+        },
+        {
+            "title": "Pritunl with Fake Api",
+            "image": "cf3005/pritunl-with-fake-api:latest",
+            "description": "Enterprise Distributed OpenVPN, IPsec and WireGuard Server.",
+            "categories": [
+                "Web",
+                "VPN"
+            ],
+            "platform": "linux",
+            "note": "Docs : https://hub.docker.com/r/goofball222/pritunl",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "80:80/tcp",
+                "443:443/tcp",
+                "1194:1194/tcp",
+                "1194:1194/udp",
+                "1195:1195/udp",
+                "9700:9700/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/localtime:ro",
+                    "bind": "/etc/localtime"
+                }
+            ],
+            "env": [
+                {
+                    "name": "Debug",
+                    "default": "false",
+                    "label": "DEBUG",
+                    "description": "Set to true for extra entrypoint script verbosity for debugging"
+                },
+                {
+                    "name": "Mongodb URI",
+                    "default": "mongodb://mongo:27017/pritunl",
+                    "label": "MONGODB_URI",
+                    "description": "Sets the URI Pritunl will access for the Mongo DB instance"
+                },
+                {
+                    "name": "Pritunl Options",
+                    "default": "",
+                    "label": "PRITUNL_OPTS",
+                    "description": "Any additional custom run options for the container pritunl process"
+                },
+                {
+                    "name": "Reverse proxy",
+                    "default": "false",
+                    "label": "REVERSE_PROXY\t",
+                    "description": "Set to true to set the pritunl web interface to run in reverse-proxy mode (Traefik/nginx)"
+                },
+                {
+                    "name": "Wireguard",
+                    "default": "false",
+                    "label": "WIREGUARD",
+                    "description": "Set to true, Switches web interface back to port 443 and HTTPS if running wireguard with reverse-proxy (Traefik/nginx)"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pritunl.png",
+            "network_mode": "host",
+            "type": 1,
+            "privileged": true
         }
     ]
 }

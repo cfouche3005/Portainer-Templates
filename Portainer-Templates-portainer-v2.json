@@ -163,6 +163,111 @@
             "network_mode": "host",
             "type": 1,
             "privileged": true
+        },
+        {
+            "title": "Onedrive",
+            "image": "driveone/onedrive:alpine",
+            "description": "A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365 and SharePoint.",
+            "categories": [
+                "Files",
+                "Backup"
+            ],
+            "platform": "linux",
+            "note": "Sources : https://github.com/abraunegg/onedrive\nDocs : https://github.com/abraunegg/onedrive/tree/master/docs\nUsing the alpine image tag",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/onedrive/conf",
+                    "bind": "/portainer/Files/AppData/Config/Onedrive/Config"
+                },
+                {
+                    "container": "/onedrive/data",
+                    "bind": ""
+                }
+            ],
+            "env": [
+                {
+                    "name": "ONEDRIVE_UID",
+                    "default": "1000",
+                    "label": "Onedrive UserID",
+                    "description": "UserID (UID) to run as"
+                },
+                {
+                    "name": "ONEDRIVE_GID",
+                    "default": "1000",
+                    "description": "GroupID (GID) to run as",
+                    "label": "Onedrive GroupID"
+                },
+                {
+                    "name": "ONEDRIVE_VERBOSE",
+                    "default": "0",
+                    "label": "Onedrive Verbose",
+                    "description": "Controls \"--verbose\" switch on onedrive sync. Default is 0"
+                },
+                {
+                    "name": "ONEDRIVE_DEBUG",
+                    "default": "0",
+                    "description": "Controls \"--verbose --verbose\" switch on onedrive sync. Default is 0",
+                    "label": "Onedrive Debug"
+                },
+                {
+                    "name": "ONEDRIVE_DEBUG_HTTPS",
+                    "default": "0",
+                    "description": "Controls \"--debug-https\" switch on onedrive sync. Default is 0",
+                    "label": "Onedrive Debug HTTPS"
+                },
+                {
+                    "name": "ONEDRIVE_RESYNC",
+                    "default": "0",
+                    "label": "Onedrive Resync",
+                    "description": "Controls \"--resync\" switch on onedrive sync. Default is 0"
+                },
+                {
+                    "name": "ONEDRIVE_DOWNLOADONLY",
+                    "default": "0",
+                    "description": "Controls \"--download-only\" switch on onedrive sync. Default is 0",
+                    "label": "Onedrive Download Only"
+                },
+                {
+                    "name": "ONEDRIVE_UPLOADONLY",
+                    "default": "0",
+                    "description": "Controls \"--upload-only\" switch on onedrive sync. Default is 0",
+                    "label": "Onedrive Upload Only"
+                },
+                {
+                    "name": "ONEDRIVE_LOGOUT",
+                    "default": "0",
+                    "description": "Controls \"--logout\" switch. Default is 0",
+                    "label": "Ondrive Logout"
+                },
+                {
+                    "name": "ONEDRIVE_REAUTH",
+                    "default": "0",
+                    "description": "Controls \"--reauth\" switch. Default is 0",
+                    "label": "Onedrive Reauth"
+                },
+                {
+                    "name": "ONEDRIVE_AUTHFILES",
+                    "default": "",
+                    "description": "Controls \"--auth-files\" option. Default is \"\"",
+                    "label": "Onedrive AuthFiles"
+                },
+                {
+                    "name": "ONEDRIVE_AUTHRESPONSE",
+                    "default": "",
+                    "label": "Onedrive AuthResponse",
+                    "description": "Controls \"--auth-response\" option. Default is \"\""
+                },
+                {
+                    "name": "ONEDRIVE_DISPLAY_CONFIG",
+                    "default": "0",
+                    "description": "Controls \"--display-running-config\" switch on onedrive sync. Default is 0",
+                    "label": "Ondrive Display Config"
+                }
+            ],
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Microsoft_Office_OneDrive_%282019%E2%80%93present%29.svg",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

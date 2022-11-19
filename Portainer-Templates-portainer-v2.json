@@ -74,7 +74,7 @@
                     "description": "Any additional custom run options for the container pritunl process"
                 },
                 {
-                    "name": "REVERSE_PROXY\t",
+                    "name": "REVERSE_PROXY",
                     "default": "false",
                     "label": "Reverse proxy",
                     "description": "Set to true to set the pritunl web interface to run in reverse-proxy mode (Traefik/nginx)"
@@ -142,7 +142,7 @@
                     "description": "Any additional custom run options for the container pritunl process"
                 },
                 {
-                    "name": "REVERSE_PROXY\t",
+                    "name": "REVERSE_PROXY",
                     "default": "false",
                     "label": "Reverse proxy",
                     "description": "Set to true to set the pritunl web interface to run in reverse-proxy mode (Traefik/nginx)"

@@ -84,6 +84,12 @@
                     "default": "false",
                     "label": "WIREGUARD",
                     "description": "Set to true, Switches web interface back to port 443 and HTTPS if running wireguard with reverse-proxy (Traefik/nginx)"
+                },
+                {
+                    "name": "Timezone",
+                    "default": "CET",
+                    "description": "",
+                    "label": "TZ"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pritunl.png",
@@ -146,6 +152,11 @@
                     "default": "false",
                     "label": "WIREGUARD",
                     "description": "Set to true, Switches web interface back to port 443 and HTTPS if running wireguard with reverse-proxy (Traefik/nginx)"
+                },
+                {
+                    "name": "Timezone",
+                    "default": "CET",
+                    "label": "TZ"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pritunl.png",

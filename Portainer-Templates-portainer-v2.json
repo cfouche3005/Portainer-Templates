@@ -56,40 +56,40 @@
             ],
             "env": [
                 {
-                    "name": "Debug",
+                    "name": "DEBUG",
                     "default": "false",
-                    "label": "DEBUG",
+                    "label": "Debug",
                     "description": "Set to true for extra entrypoint script verbosity for debugging"
                 },
                 {
-                    "name": "Mongodb URI",
+                    "name": "MONGODB_URI",
                     "default": "mongodb://mongo:27017/pritunl",
-                    "label": "MONGODB_URI",
+                    "label": "Mongodb",
                     "description": "Sets the URI Pritunl will access for the Mongo DB instance"
                 },
                 {
-                    "name": "Pritunl Options",
+                    "name": "PRITUNL_OPTS",
                     "default": "",
-                    "label": "PRITUNL_OPTS",
+                    "label": "Pritunl Options",
                     "description": "Any additional custom run options for the container pritunl process"
                 },
                 {
-                    "name": "Reverse proxy",
+                    "name": "REVERSE_PROXY\t",
                     "default": "false",
-                    "label": "REVERSE_PROXY\t",
+                    "label": "Reverse proxy",
                     "description": "Set to true to set the pritunl web interface to run in reverse-proxy mode (Traefik/nginx)"
                 },
                 {
-                    "name": "Wireguard",
+                    "name": "WIREGUARD",
                     "default": "false",
-                    "label": "WIREGUARD",
+                    "label": "Wireguard",
                     "description": "Set to true, Switches web interface back to port 443 and HTTPS if running wireguard with reverse-proxy (Traefik/nginx)"
                 },
                 {
-                    "name": "Timezone",
+                    "name": "TZ",
                     "default": "CET",
                     "description": "",
-                    "label": "TZ"
+                    "label": "Timezone"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pritunl.png",
@@ -124,39 +124,39 @@
             ],
             "env": [
                 {
-                    "name": "Debug",
+                    "name": "DEBUG",
                     "default": "false",
-                    "label": "DEBUG",
+                    "label": "Debug",
                     "description": "Set to true for extra entrypoint script verbosity for debugging"
                 },
                 {
-                    "name": "Mongodb URI",
+                    "name": "MONGODB_URI",
                     "default": "mongodb://mongo:27017/pritunl",
-                    "label": "MONGODB_URI",
+                    "label": "Mongodb URI",
                     "description": "Sets the URI Pritunl will access for the Mongo DB instance"
                 },
                 {
-                    "name": "Pritunl Options",
+                    "name": "PRITUNL_OPTS",
                     "default": "",
-                    "label": "PRITUNL_OPTS",
+                    "label": "Pritunl Options",
                     "description": "Any additional custom run options for the container pritunl process"
                 },
                 {
-                    "name": "Reverse proxy",
+                    "name": "REVERSE_PROXY\t",
                     "default": "false",
-                    "label": "REVERSE_PROXY\t",
+                    "label": "Reverse proxy",
                     "description": "Set to true to set the pritunl web interface to run in reverse-proxy mode (Traefik/nginx)"
                 },
                 {
-                    "name": "Wireguard",
+                    "name": "WIREGUARD",
                     "default": "false",
-                    "label": "WIREGUARD",
+                    "label": "Wireguard",
                     "description": "Set to true, Switches web interface back to port 443 and HTTPS if running wireguard with reverse-proxy (Traefik/nginx)"
                 },
                 {
-                    "name": "Timezone",
+                    "name": "TZ",
                     "default": "CET",
-                    "label": "TZ"
+                    "label": "Timezone"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pritunl.png",

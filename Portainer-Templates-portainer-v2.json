@@ -194,7 +194,7 @@
                 },
                 {
                     "name": "ONEDRIVE_GID",
-                    "default": "1000",
+                    "default": "100",
                     "description": "GroupID (GID) to run as",
                     "label": "Onedrive GroupID"
                 },
@@ -267,6 +267,60 @@
             ],
             "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Microsoft_Office_OneDrive_%282019%E2%80%93present%29.svg",
             "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Authelia",
+            "image": "authelia/authelia:latest",
+            "description": "Authelia is an open-source authentication and authorization server and portal fulfilling the identity and access management (IAM) role of information security in providing multi-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for common reverse proxies.",
+            "categories": [
+                "Web",
+                "Security"
+            ],
+            "platform": "linux",
+            "note": "See  https://www.authelia.com/integration/deployment/docker/#standalone-example for configuration",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9091:9091/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": ""
+                },
+                {
+                    "container": "/secrets",
+                    "bind": ""
+                }
+            ],
+            "env": [
+                {
+                    "name": "AUTHELIA_JWT_SECRET_FILE",
+                    "default": "/secrets/JWT_SECRET",
+                    "description": "Defines the secret used to craft JWT tokens leveraged by the identity verification process. This can a random string. It’s strongly recommended this is a Random Alphanumeric String with 64 or more characters.",
+                    "label": "JWT secret"
+                },
+                {
+                    "name": "AUTHELIA_SESSION_SECRET_FILE",
+                    "default": "/secrets/SESSION_SECRET",
+                    "label": "Session secret",
+                    "description": "The secret key used to encrypt session data in Redis.  It’s strongly recommended this is a Random Alphanumeric String with 64 or more characters."
+                },
+                {
+                    "name": "AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE",
+                    "default": "/secrets/STORAGE_PASSWORD",
+                    "label": "Postgres Password",
+                    "description": "The password paired with the username used to connect to the database.  It’s strongly recommended this is a Random Alphanumeric String with 64 or more characters and the user password is changed to this value."
+                },
+                {
+                    "name": "AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE",
+                    "default": "/secrets/STORAGE_ENCRYPTION_KEY",
+                    "label": "Encryption Key",
+                    "description": "The encryption key used to encrypt data in the database. We encrypt data by creating a sha256 checksum of the provided value, and use that to encrypt the data with the AES-GCM 256bit algorithm.  The minimum length of this key is 20 characters.  It’s strongly recommended this is a Random Alphanumeric String with 64 or more characters."
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/authelia.png",
+            "network_mode": "host",
             "type": 1
         }
     ]

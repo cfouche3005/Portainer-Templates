@@ -322,6 +322,94 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/authelia.png",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "PostgreSQL",
+            "name": "postgresql",
+            "image": "postgres:latest",
+            "description": "PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "5432/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/lib/postgresql/data",
+                    "bind": ""
+                }
+            ],
+            "env": [
+                {
+                    "name": "POSTGRES_USER",
+                    "default": "postgres",
+                    "label": "Postgres SuperUser"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "default": "",
+                    "label": "Postgres SuperUser Password"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/postgres.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "LLDAP",
+            "name": "lldap",
+            "image": "nitnelave/lldap:stable",
+            "description": "This project is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. It integrates with many backends, from KeyCloak to Authelia to Nextcloud and more !",
+            "categories": [
+                "Web",
+                "Security"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "3890:3890/tcp",
+                "17170:17170/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Config/LLAP"
+                }
+            ],
+            "env": [
+                {
+                    "name": "UID",
+                    "default": "1000",
+                    "label": "UserID"
+                },
+                {
+                    "name": "GID",
+                    "default": "100",
+                    "label": "GroupID"
+                },
+                {
+                    "name": "TZ",
+                    "default": "CEST",
+                    "label": "Timezone"
+                },
+                {
+                    "name": "LLDAP_JWT_SECRET",
+                    "default": ""
+                },
+                {
+                    "name": "LLDAP_LDAP_USER_PASS",
+                    "default": ""
+                },
+                {
+                    "name": "LLDAP_LDAP_BASE_DN",
+                    "default": ""
+                }
+            ],
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

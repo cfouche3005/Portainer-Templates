@@ -397,15 +397,18 @@
                 },
                 {
                     "name": "LLDAP_JWT_SECRET",
-                    "default": ""
+                    "default": "",
+                    "label": "LLDAP_JWT_SECRET"
                 },
                 {
                     "name": "LLDAP_LDAP_USER_PASS",
-                    "default": ""
+                    "default": "",
+                    "label": "LLDAP_LDAP_USER_PASS"
                 },
                 {
                     "name": "LLDAP_LDAP_BASE_DN",
-                    "default": ""
+                    "default": "",
+                    "label": "LLDAP_LDAP_BASE_DN"
                 }
             ],
             "network_mode": "bridge",

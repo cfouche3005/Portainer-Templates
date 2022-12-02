@@ -170,7 +170,8 @@
             "description": "A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365 and SharePoint.",
             "categories": [
                 "Files",
-                "Backup"
+                "Backup",
+                "Sync"
             ],
             "platform": "linux",
             "note": "Sources : https://github.com/abraunegg/onedrive\nDocs : https://github.com/abraunegg/onedrive/tree/master/docs\nUsing the alpine image tag",
@@ -412,6 +413,68 @@
                 }
             ],
             "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "AdGuardHome",
+            "name": "adguard-home",
+            "image": "adguard/adguardhome:latest",
+            "description": "AdGuard Home is a network-wide software for blocking ads and tracking. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that.",
+            "categories": [
+                "DNS",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "53:53/tcp",
+                "53:53/udp",
+                "67:67/udp",
+                "68:68/tcp",
+                "68:68/udp",
+                "80:80/tcp",
+                "443:443/tcp",
+                "3000:3000/tcp",
+                "853:853/tcp",
+                "784:784/udp",
+                "5443:5443/tcp",
+                "5443:5443/udp"
+            ],
+            "volumes": [
+                {
+                    "container": "/opt/adguardhome/work",
+                    "bind": "/portainer/Files/AppData/Adguard/Workdir"
+                },
+                {
+                    "container": "/opt/adguardhome/conf",
+                    "bind": "/portainer/Files/AppData/Adguard/Conf"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adguard-home.png",
+            "network_mode": "host",
+            "type": 1
+        },
+        {
+            "title": "AdGuardHome Sync",
+            "name": "adguard-home-sync",
+            "image": "ghcr.io/bakito/adguardhome-sync:latest",
+            "description": "Synchronize AdGuardHome config to replica instances.",
+            "categories": [
+                "DNS",
+                "Sync"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8080:8080/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Adguard/Sync"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adguard-home.png",
             "type": 1
         }
     ]

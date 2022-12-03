@@ -504,6 +504,47 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homepage.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Docker Socket Proxy",
+            "name": "dockerproxy",
+            "image": "tecnativa/docker-socket-proxy:latest",
+            "description": "This is a security-enhanced proxy for the Docker Socket.",
+            "categories": [
+                "Web",
+                "Security",
+                "Docker"
+            ],
+            "platform": "linux",
+            "note": "ReadOnly Configuration for Homepage",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "3486:2375/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/run/docker.sock",
+                    "bind": "/var/run/docker.sock"
+                }
+            ],
+            "env": [
+                {
+                    "name": "CONTAINERS",
+                    "default": "1",
+                    "description": "Allow access to viewing containers",
+                    "label": "Containers rule"
+                },
+                {
+                    "name": "POST",
+                    "default": "0",
+                    "label": "POST rule",
+                    "description": "Disallow any POST operations (effectively read-only)"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
+            "network_mode": "bridge",
+            "type": 1,
+            "privileged": true
         }
     ]
 }

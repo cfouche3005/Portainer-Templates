@@ -573,6 +573,30 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/caddy.svg",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "Acme.sh",
+            "name": "acmesh",
+            "image": "neilpang/acme.sh:latest",
+            "description": "An ACME Shell script: acme.sh",
+            "categories": [
+                "Web"
+            ],
+            "platform": "linux",
+            "note": "Acme.sh run as daemon so you need to use docker exec to execute any acme.sh commands.",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/acme.sh",
+                    "bind": "/portainer/Files/AppData/Config/Acme.sh"
+                }
+            ],
+            "command": [
+                "daemon"
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/letsencrypt.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

@@ -591,9 +591,7 @@
                     "bind": "/portainer/Files/AppData/Config/Acme.sh"
                 }
             ],
-            "command": [
-                "daemon"
-            ],
+            "command":"daemon",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/letsencrypt.png",
             "network_mode": "bridge",
             "type": 1

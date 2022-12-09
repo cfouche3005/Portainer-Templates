@@ -576,7 +576,7 @@
         },
         {
             "title": "Acme.sh",
-            "name": "acmesh",
+            "name": "acme.sh",
             "image": "neilpang/acme.sh:latest",
             "description": "An ACME Shell script: acme.sh",
             "categories": [
@@ -591,8 +591,44 @@
                     "bind": "/portainer/Files/AppData/Config/Acme.sh"
                 }
             ],
-            "command":"daemon",
+            "command": "daemon",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/letsencrypt.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "SearX-NG",
+            "name": "searx-ng",
+            "image": "searxng/searxng:latest",
+            "description": "SearXNG is a free internet metasearch engine which aggregates results from more than 70 search services. Users are neither tracked nor profiled. Additionally, SearXNG can be used over Tor for online anonymity.",
+            "categories": [
+                "Web",
+                "Search Engine"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8079:8079/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/searxng",
+                    "bind": "/portainer/Files/AppData/Config/SearX-NG"
+                }
+            ],
+            "env": [
+                {
+                    "name": "BASE_URL",
+                    "default": "http://localhost:8079",
+                    "label": "Base URL"
+                },
+                {
+                    "name": "INSTANCE_NAME",
+                    "default": "cfouche-search",
+                    "label": "Instance Name"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/searxng.png",
             "network_mode": "bridge",
             "type": 1
         }

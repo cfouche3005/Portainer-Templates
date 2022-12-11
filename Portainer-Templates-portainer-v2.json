@@ -782,7 +782,7 @@
         },
         {
             "title": "Watchtower",
-            "name": "A container-based solution for automating Docker container base image updates.",
+            "name": "watchtower",
             "image": "containrrr/watchtower:latest",
             "description": "A container-based solution for automating Docker container base image updates.",
             "categories": [
@@ -838,6 +838,11 @@
                     "name": "WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN",
                     "default": "",
                     "label": "Gotify Token"
+                },
+                {
+                    "name": "WATCHTOWER_NOTIFICATION_TEMPLATE",
+                    "default": "{{- if .Report -}}   {{- with .Report -}}     {{- if ( or .Updated .Failed ) -}} {{len .Scanned}} Scanned, {{len .Updated}} Updated, {{len .Failed}} Failed       {{- range .Updated}} - {{.Name}} ({{.ImageName}}): {{.CurrentImageID.ShortID}} updated to {{.LatestImageID.ShortID}}       {{- end -}}       {{- range .Fresh}} - {{.Name}} ({{.ImageName}}): {{.State}}       {{- end -}}       {{- range .Skipped}} - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}       {{- end -}}       {{- range .Failed}} - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}       {{- end -}}     {{- end -}}   {{- end -}} {{- else -}}   {{range .Entries -}}{{.Message}}{{\"\\n\"}}{{- end -}} {{- end -}}",
+                    "label": "Notification Template"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/watchtower.png",

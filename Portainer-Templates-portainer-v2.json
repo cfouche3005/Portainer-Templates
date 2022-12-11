@@ -7,7 +7,9 @@
             "image": "caddy:latest",
             "description": "Still the only web server to use TLS automatically and by default. Deploy and scale HTTPS effortlessly with Caddy 2.",
             "categories": [
-                "Web"
+                "Web",
+                "Proxy",
+                "Certificate"
             ],
             "platform": "linux",
             "restart_policy": "unless-stopped",
@@ -179,11 +181,11 @@
             "volumes": [
                 {
                     "container": "/onedrive/conf",
-                    "bind": "/portainer/Files/AppData/Config/Onedrive/Config"
+                    "bind": "/portainer/Files/AppData/Config/Onedrive"
                 },
                 {
                     "container": "/onedrive/data",
-                    "bind": ""
+                    "bind": "/portainer/Files/AppData/Data/Onedrive"
                 }
             ],
             "env": [
@@ -516,7 +518,6 @@
                 "Docker"
             ],
             "platform": "linux",
-            "note": "ReadOnly Configuration for Homepage",
             "restart_policy": "unless-stopped",
             "ports": [
                 "3486:2375/tcp"
@@ -529,16 +530,129 @@
             ],
             "env": [
                 {
-                    "name": "CONTAINERS",
+                    "name": "EVENTS",
                     "default": "1",
-                    "description": "Allow access to viewing containers",
-                    "label": "Containers rule"
+                    "label": "EVENTS"
+                },
+                {
+                    "name": "PING",
+                    "default": "1",
+                    "label": "PING"
+                },
+                {
+                    "name": "VERSION",
+                    "default": "1",
+                    "label": "VERSION"
+                },
+                {
+                    "name": "AUTH",
+                    "default": "0",
+                    "label": "AUTH"
+                },
+                {
+                    "name": "SECRETS",
+                    "default": "0",
+                    "label": "SECRETS"
                 },
                 {
                     "name": "POST",
                     "default": "0",
-                    "label": "POST rule",
-                    "description": "Disallow any POST operations (effectively read-only)"
+                    "label": "POST"
+                },
+                {
+                    "name": "BUILD",
+                    "default": "0",
+                    "label": "BUILD"
+                },
+                {
+                    "name": "COMMIT",
+                    "default": "0",
+                    "label": "COMMIT"
+                },
+                {
+                    "name": "CONFIGS",
+                    "default": "0",
+                    "label": "CONFIGS"
+                },
+                {
+                    "name": "CONTAINERS",
+                    "default": "1",
+                    "label": "CONTAINERS"
+                },
+                {
+                    "name": "DISTRIBUTION",
+                    "default": "0",
+                    "label": "DISTRIBUTION"
+                },
+                {
+                    "name": "EXEC",
+                    "default": "0",
+                    "label": "EXEC"
+                },
+                {
+                    "name": "GRPC",
+                    "default": "0",
+                    "label": "GRPC"
+                },
+                {
+                    "name": "IMAGES",
+                    "default": "0",
+                    "label": "IMAGES"
+                },
+                {
+                    "name": "INFO",
+                    "default": "0",
+                    "label": "INFO"
+                },
+                {
+                    "name": "NETWORKS",
+                    "default": "0",
+                    "label": "NETWORKS"
+                },
+                {
+                    "name": "NODES",
+                    "default": "0",
+                    "label": "NODES"
+                },
+                {
+                    "name": "PLUGINS",
+                    "default": "0",
+                    "label": "PLUGINS"
+                },
+                {
+                    "name": "SERVICES",
+                    "default": "0",
+                    "label": "SERVICES"
+                },
+                {
+                    "name": "SESSION",
+                    "default": "0",
+                    "label": "SESSION"
+                },
+                {
+                    "name": "SWARM",
+                    "default": "0",
+                    "label": "SWARM"
+                },
+                {
+                    "name": "SYSTEM",
+                    "default": "0",
+                    "label": "SYSTEM"
+                },
+                {
+                    "name": "TASKS",
+                    "default": "0",
+                    "label": "TASKS"
+                },
+                {
+                    "name": "VOLUMES",
+                    "default": "0",
+                    "label": "VOLUMES"
+                },
+                {
+                    "name": "SOCKET_PATH",
+                    "default": "/var/run/docker.sock",
+                    "label": "SOCKET_PATH"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
@@ -552,7 +666,9 @@
             "image": "cf3005/caddy-with-dns-cloudflare:latest",
             "description": "Still the only web server to use TLS automatically and by default. Deploy and scale HTTPS effortlessly with Caddy 2.",
             "categories": [
-                "Web"
+                "Web",
+                "Proxy",
+                "Certificate"
             ],
             "platform": "linux",
             "restart_policy": "unless-stopped",
@@ -580,7 +696,8 @@
             "image": "neilpang/acme.sh:latest",
             "description": "An ACME Shell script: acme.sh",
             "categories": [
-                "Web"
+                "Web",
+                "Certificate"
             ],
             "platform": "linux",
             "note": "Acme.sh run as daemon so you need to use docker exec to execute any acme.sh commands.",
@@ -629,6 +746,282 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/searxng.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Nginx Proxy Manager",
+            "name": "nginx-proxy-manager",
+            "image": "jc21/nginx-proxy-manager:latest",
+            "description": "Nginx Proxy Manager enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.",
+            "categories": [
+                "Proxy",
+                "Web",
+                "Certificate"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "80:80/tcp",
+                "443:443/tcp",
+                "81:81/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Config/Nginx-Proxy-Manager/data"
+                },
+                {
+                    "container": "/etc/letsencrypt",
+                    "bind": "/portainer/Files/AppData/Config/Nginx-Proxy-Manager/letsencrypt"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nginxproxymanager.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Watchtower",
+            "name": "A container-based solution for automating Docker container base image updates.",
+            "image": "containrrr/watchtower:latest",
+            "description": "A container-based solution for automating Docker container base image updates.",
+            "categories": [
+                "Docker"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "10808:8080/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/run/docker.sock",
+                    "bind": "/var/run/docker.sock"
+                }
+            ],
+            "env": [
+                {
+                    "name": "WATCHTOWER_LABEL_ENABLE",
+                    "default": "true",
+                    "label": "Filter by enable label",
+                    "description": "Update containers that have a \"com.centurylinklabs.watchtower.enable\" label set to true."
+                },
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "Time Zone",
+                    "description": "Sets the time zone to be used by WatchTower's logs and the optional Cron scheduling argument (--schedule). If this environment variable is not set, Watchtower will use the default time zone: UTC. To find out the right value, see this list, find your location and use the value in TZ Database Name, e.g Europe/Rome."
+                },
+                {
+                    "name": "WATCHTOWER_CLEANUP",
+                    "default": "true",
+                    "label": "Cleanup",
+                    "description": "Removes old images after updating. When this flag is specified, watchtower will remove the old image after restarting a container with a new image. Use this option to prevent the accumulation of orphaned images on your system as containers are updated."
+                },
+                {
+                    "name": "DOCKER_HOST",
+                    "default": "unix:///var/run/docker.sock",
+                    "label": "Docker host",
+                    "description": "Docker daemon socket to connect to. Can be pointed at a remote Docker host by specifying a TCP endpoint as \"tcp://hostname:port\"."
+                },
+                {
+                    "name": "WATCHTOWER_NOTIFICATIONS",
+                    "default": "gotify",
+                    "label": "Notification Type"
+                },
+                {
+                    "name": "WATCHTOWER_NOTIFICATION_GOTIFY_URL",
+                    "default": "",
+                    "label": "Gotify URL"
+                },
+                {
+                    "name": "WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN",
+                    "default": "",
+                    "label": "Gotify Token"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/watchtower.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Wakapi",
+            "name": "wakapi",
+            "image": "ghcr.io/muety/wakapi:latest",
+            "description": "A minimalist, self-hosted WakaTime-compatible backend for coding statistics.",
+            "categories": [
+                "Developpement"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8300:8300/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Config/Wakapi"
+                }
+            ],
+            "env": [
+                {
+                    "name": "WAKAPI_PASSWORD_SALT",
+                    "default": "",
+                    "label": "WAKAPI_PASSWORD_SALT",
+                    "description": "Pepper to use for password hashing"
+                },
+                {
+                    "name": "WAKAPI_PORT",
+                    "default": "8300",
+                    "label": "WAKAPI_PORT",
+                    "description": "Port to listen on"
+                },
+                {
+                    "name": "WAKAPI_DB_TYPE",
+                    "default": "",
+                    "label": "WAKAPI_DB_TYPE",
+                    "description": "Database type (one of sqlite3, mysql, postgres, cockroach)"
+                },
+                {
+                    "name": "WAKAPI_DB_NAME",
+                    "default": "",
+                    "label": "WAKAPI_DB_NAME",
+                    "description": "Database name"
+                },
+                {
+                    "name": "WAKAPI_DB_HOST",
+                    "default": "",
+                    "label": "WAKAPI_DB_HOST",
+                    "description": "Database host"
+                },
+                {
+                    "name": "WAKAPI_DB_PORT",
+                    "default": "",
+                    "label": "WAKAPI_DB_PORT",
+                    "description": "Database port"
+                },
+                {
+                    "name": "WAKAPI_DB_USER",
+                    "default": "",
+                    "label": "WAKAPI_DB_USER",
+                    "description": "Database user"
+                },
+                {
+                    "name": "WAKAPI_DB_PASSWORD",
+                    "default": "",
+                    "label": "WAKAPI_DB_PASSWORD",
+                    "description": "Database password"
+                },
+                {
+                    "name": "WAKAPI_MAIL_ENABLED",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_ENABLED",
+                    "description": "Whether to allow Wakapi to send e-mail (e.g. for password resets)"
+                },
+                {
+                    "name": "WAKAPI_MAIL_SENDER",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_SENDER",
+                    "description": "Default sender address for outgoing mails (ignored for MailWhale)"
+                },
+                {
+                    "name": "WAKAPI_MAIL_PROVIDER",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_PROVIDER",
+                    "description": "Implementation to use for sending mails (one of [smtp, mailwhale])"
+                },
+                {
+                    "name": "WAKAPI_MAIL_SMTP_HOST",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_SMTP_HOST",
+                    "description": "SMTP server address for sending mail (if using smtp mail provider)"
+                },
+                {
+                    "name": "WAKAPI_MAIL_SMTP_PORT",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_SMTP_PORT",
+                    "description": "SMTP server port (usually 465)"
+                },
+                {
+                    "name": "WAKAPI_MAIL_SMTP_USER",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_SMTP_USER",
+                    "description": "SMTP server authentication username"
+                },
+                {
+                    "name": "WAKAPI_MAIL_SMTP_PASS",
+                    "default": "",
+                    "label": "WAKAPI_MAIL_SMTP_PASS",
+                    "description": "SMTP server authentication password"
+                },
+                {
+                    "name": "WAKAPI_EXPOSE_METRICS",
+                    "default": "",
+                    "label": "WAKAPI_EXPOSE_METRICS",
+                    "description": "Whether to expose Prometheus metrics under /api/metrics"
+                },
+                {
+                    "name": "WAKAPI_ALLOW_SIGNUP",
+                    "default": "",
+                    "label": "WAKAPI_ALLOW_SIGNUP",
+                    "description": "Whether to enable user registration"
+                },
+                {
+                    "name": "ENVIRONMENT",
+                    "default": "production",
+                    "label": "ENVIRONMENT",
+                    "description": "Whether to use development- or production settings"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wakapi.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Nextcloud",
+            "name": "nextcloud",
+            "image": "linuxserver/nextcloud:latest",
+            "description": "Where are your photos and documents? With Nextcloud you pick a server of your choice, at home, in a data center or at a provider. And that is where your files will be. Nextcloud runs on that server, protecting your data and giving you access from your desktop or mobile devices.",
+            "categories": [
+                "Files",
+                "Cloud",
+                "Web",
+                "Sync",
+                "Backup"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9643:443/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Nextcloud"
+                },
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Data/Onedrive"
+                }
+            ],
+            "env": [
+                {
+                    "name": "PUID",
+                    "default": "1000",
+                    "label": "PUID"
+                },
+                {
+                    "name": "PGID",
+                    "default": "100",
+                    "label": "PGID"
+                },
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
             "network_mode": "bridge",
             "type": 1
         }

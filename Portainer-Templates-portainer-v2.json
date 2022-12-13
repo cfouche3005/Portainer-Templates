@@ -838,11 +838,6 @@
                     "name": "WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN",
                     "default": "",
                     "label": "Gotify Token"
-                },
-                {
-                    "name": "WATCHTOWER_NOTIFICATION_TEMPLATE",
-                    "default": "{{- if .Report -}}   {{- with .Report -}}     {{- if ( or .Updated .Failed ) -}} {{len .Scanned}} Scanned, {{len .Updated}} Updated, {{len .Failed}} Failed       {{- range .Updated}} - {{.Name}} ({{.ImageName}}): {{.CurrentImageID.ShortID}} updated to {{.LatestImageID.ShortID}}       {{- end -}}       {{- range .Fresh}} - {{.Name}} ({{.ImageName}}): {{.State}}       {{- end -}}       {{- range .Skipped}} - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}       {{- end -}}       {{- range .Failed}} - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}       {{- end -}}     {{- end -}}   {{- end -}} {{- else -}}   {{range .Entries -}}{{.Message}}{{\"\\n\"}}{{- end -}} {{- end -}}",
-                    "label": "Notification Template"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/watchtower.png",
@@ -1027,6 +1022,73 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "CockroachDB",
+            "name": "cockroachdb",
+            "image": "cockroachdb/cockroach:latest",
+            "description": "A distributed SQL database designed for speed, scale, and survival",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "26257:26257/tcp",
+                "8063:8063/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/cockroach/cockroach-data",
+                    "bind": "/portainer/Files/AppData/Data/CockroachDB"
+                },
+                {
+                    "container": "/cockroach/cockroach-certs",
+                    "bind": "/portainer/Files/AppData/Config/CockroachDB"
+                }
+            ],
+            "env": [
+                {
+                    "name": "COCKROACH_HTTP_ADDR",
+                    "default": "0.0.0.0:8063",
+                    "label": "COCKROACH_HTTP_ADDR",
+                    "description": "The IP address/hostname and port to listen on for DB Console HTTP requests. For IPv6, use the notation [...], e.g., [::1]:8080 or [fe80::f6f2:::]:8080."
+                },
+                {
+                    "name": "COCKROACH_SQL_ADDR",
+                    "default": "0.0.0.0:26257",
+                    "label": "COCKROACH_SQL_ADDR",
+                    "description": "The IP address/hostname and port to listen on for SQL connections from clients. For IPv6, use the notation [...], e.g., [::1] or [fe80::f6f2:::].  This flag's effect depends on how it is used in combination with --advertise-sql-addr. For example, the node will also advertise itself to clients using this value if --advertise-sql-addr is not specified."
+                },
+                {
+                    "name": "COCKROACH_ADVERTISE-SQL-ADDR",
+                    "default": "localhost:26257",
+                    "label": "COCKROACH_ADVERTISE-SQL-ADDR",
+                    "description": "The IP address/hostname and port to tell clients to use. If using a hostname, it must be resolvable from all nodes. If using an IP address, it must be routable from all nodes; for IPv6, use the notation [...], e.g., [::1] or [fe80::f6f2:::].  This flag's effect depends on how it is used in combination with --sql-addr. For example, if the port number is different than the one used in --sql-addr, port forwarding is required."
+                },
+                {
+                    "name": "COCKROACH_INSECURE",
+                    "default": "false",
+                    "label": "COCKROACH_INSECURE",
+                    "description": "Note: The --insecure flag is intended for non-production testing only.  Run in insecure mode, skipping all TLS encryption and authentication. If this flag is not set, the --certs-dir flag must point to valid certificates.  Note the following risks: An insecure cluster is open to any client that can access any node's IP addresses; client connections must also be made insecurely; any user, even root, can log in without providing a password; any user, connecting as root, can read or write any data in your cluster; there is no network encryption or authentication, and thus no confidentiality."
+                },
+                {
+                    "name": "COCKROACH_CERTS_DIR",
+                    "default": "/cockroach/cockroach-certs",
+                    "label": "COCKROACH_CERTS_DIR",
+                    "description": "The path to the certificate directory. The directory must contain valid certificates if running in secure mode."
+                },
+                {
+                    "name": "COCKROACH_JOIN",
+                    "default": "",
+                    "label": "COCKROACH_JOIN",
+                    "description": "The host addresses that connect nodes to the cluster and distribute the rest of the node addresses. These can be IP addresses or DNS aliases of nodes.  When starting a cluster in a single region, specify the addresses of 3-5 initial nodes. When starting a cluster in multiple regions, specify more than 1 address per region, and select nodes that are spread across failure domains. Then run the cockroach init command against any of these nodes to complete cluster startup. See the example below for more details.  Use the same --join list for all nodes to ensure that the cluster can stabilize. Do not list every node in the cluster, because this increases the time for a new cluster to stabilize. Note that these are best practices; it is not required to restart an existing node to update its --join flag.  cockroach start must be run with the --join flag. To start a single-node cluster, use cockroach start-single-node instead."
+                }
+            ],
+            "command": "start",
+            "logo": "https://cdn.worldvectorlogo.com/logos/cockroachdb.svg",
             "network_mode": "bridge",
             "type": 1
         }

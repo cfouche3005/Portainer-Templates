@@ -342,7 +342,7 @@
             "volumes": [
                 {
                     "container": "/var/lib/postgresql/data",
-                    "bind": ""
+                    "bind": "/portainer/Files/AppData/Data/PostgreSQL"
                 }
             ],
             "env": [
@@ -1026,69 +1026,101 @@
             "type": 1
         },
         {
-            "title": "CockroachDB",
-            "name": "cockroachdb",
-            "image": "cockroachdb/cockroach:latest",
-            "description": "A distributed SQL database designed for speed, scale, and survival",
+            "title": "Adminer",
+            "name": "adminer",
+            "image": "adminer:latest",
+            "description": "Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. Adminer is available for MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasticsearch, MongoDB and others via plugin.",
             "categories": [
-                "Database"
+                "Database",
+                "Tools"
             ],
             "platform": "linux",
+            "note": "Using the http version",
             "restart_policy": "unless-stopped",
             "ports": [
-                "26257:26257/tcp",
-                "8063:8063/tcp"
+                "8432:8080/tcp"
             ],
             "volumes": [
                 {
-                    "container": "/cockroach/cockroach-data",
-                    "bind": "/portainer/Files/AppData/Data/CockroachDB"
+                    "container": "/var/www/html/adminer.css",
+                    "bind": "/portainer/Files/AppData/Config/PostgreSQL/adminer.css"
                 },
                 {
-                    "container": "/cockroach/cockroach-certs",
-                    "bind": "/portainer/Files/AppData/Config/CockroachDB"
+                    "container": "/var/www/html/plugins-enabled",
+                    "bind": "/portainer/Files/AppData/Config/PostgreSQL/plugin"
                 }
             ],
             "env": [
                 {
-                    "name": "COCKROACH_HTTP_ADDR",
-                    "default": "0.0.0.0:8063",
-                    "label": "COCKROACH_HTTP_ADDR",
-                    "description": "The IP address/hostname and port to listen on for DB Console HTTP requests. For IPv6, use the notation [...], e.g., [::1]:8080 or [fe80::f6f2:::]:8080."
-                },
-                {
-                    "name": "COCKROACH_SQL_ADDR",
-                    "default": "0.0.0.0:26257",
-                    "label": "COCKROACH_SQL_ADDR",
-                    "description": "The IP address/hostname and port to listen on for SQL connections from clients. For IPv6, use the notation [...], e.g., [::1] or [fe80::f6f2:::].  This flag's effect depends on how it is used in combination with --advertise-sql-addr. For example, the node will also advertise itself to clients using this value if --advertise-sql-addr is not specified."
-                },
-                {
-                    "name": "COCKROACH_ADVERTISE-SQL-ADDR",
-                    "default": "localhost:26257",
-                    "label": "COCKROACH_ADVERTISE-SQL-ADDR",
-                    "description": "The IP address/hostname and port to tell clients to use. If using a hostname, it must be resolvable from all nodes. If using an IP address, it must be routable from all nodes; for IPv6, use the notation [...], e.g., [::1] or [fe80::f6f2:::].  This flag's effect depends on how it is used in combination with --sql-addr. For example, if the port number is different than the one used in --sql-addr, port forwarding is required."
-                },
-                {
-                    "name": "COCKROACH_INSECURE",
-                    "default": "false",
-                    "label": "COCKROACH_INSECURE",
-                    "description": "Note: The --insecure flag is intended for non-production testing only.  Run in insecure mode, skipping all TLS encryption and authentication. If this flag is not set, the --certs-dir flag must point to valid certificates.  Note the following risks: An insecure cluster is open to any client that can access any node's IP addresses; client connections must also be made insecurely; any user, even root, can log in without providing a password; any user, connecting as root, can read or write any data in your cluster; there is no network encryption or authentication, and thus no confidentiality."
-                },
-                {
-                    "name": "COCKROACH_CERTS_DIR",
-                    "default": "/cockroach/cockroach-certs",
-                    "label": "COCKROACH_CERTS_DIR",
-                    "description": "The path to the certificate directory. The directory must contain valid certificates if running in secure mode."
-                },
-                {
-                    "name": "COCKROACH_JOIN",
+                    "name": "ADMINER_PLUGINS",
                     "default": "",
-                    "label": "COCKROACH_JOIN",
-                    "description": "The host addresses that connect nodes to the cluster and distribute the rest of the node addresses. These can be IP addresses or DNS aliases of nodes.  When starting a cluster in a single region, specify the addresses of 3-5 initial nodes. When starting a cluster in multiple regions, specify more than 1 address per region, and select nodes that are spread across failure domains. Then run the cockroach init command against any of these nodes to complete cluster startup. See the example below for more details.  Use the same --join list for all nodes to ensure that the cluster can stabilize. Do not list every node in the cluster, because this increases the time for a new cluster to stabilize. Note that these are best practices; it is not required to restart an existing node to update its --join flag.  cockroach start must be run with the --join flag. To start a single-node cluster, use cockroach start-single-node instead."
+                    "description": "This image bundles all official Adminer plugins. You can find the list of plugins on GitHub: https://github.com/vrana/adminer/tree/master/plugins.  To load plugins you can pass a list of filenames in ADMINER_PLUGINS",
+                    "label": "ADMINER_PLUGINS"
+                },
+                {
+                    "name": "ADMINER_DESIGN",
+                    "default": "",
+                    "description": "The image bundles all the designs that are available in the source package of adminer. You can find the list of designs on GitHub: https://github.com/vrana/adminer/tree/master/designs.  To use a bundled design you can pass its name in ADMINER_DESIGN",
+                    "label": "ADMINER_DESIGN"
+                },
+                {
+                    "name": "ADMINER_DEFAULT_SERVER",
+                    "default": "",
+                    "description": "You can specify the default host with the ADMINER_DEFAULT_SERVER environment variable. This is useful if you are connecting to an external server or a docker container named something other than the default db",
+                    "label": "ADMINER_DEFAULT_SERVER"
                 }
             ],
-            "command": "start",
-            "logo": "https://cdn.worldvectorlogo.com/logos/cockroachdb.svg",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adminer.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "PGadmin",
+            "name": "pgadmin",
+            "image": "dpage/pgadmin4:latest",
+            "description": "pgAdmin 4 is a web based administration tool for the PostgreSQL database. ",
+            "categories": [
+                "Database",
+                "Tools"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8432:8432/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/lib/pgadmin",
+                    "bind": "/portainer/Files/AppData/Config/PGadmin"
+                }
+            ],
+            "env": [
+                {
+                    "name": "PGADMIN_LISTEN_PORT",
+                    "default": "8432",
+                    "label": "PGADMIN_LISTEN_PORT",
+                    "description": "Default: 80 or 443 (if TLS is enabled)  Allows the port that the server listens on to be set to a specific value rather than using the default."
+                },
+                {
+                    "name": "PGADMIN_DEFAULT_EMAIL",
+                    "default": "",
+                    "label": "PGADMIN_DEFAULT_EMAIL",
+                    "description": "This is the email address used when setting up the initial administrator account to login to pgAdmin. This variable is required and must be set at launch time."
+                },
+                {
+                    "name": "PGADMIN_DEFAULT_PASSWORD",
+                    "default": "",
+                    "label": "PGADMIN_DEFAULT_PASSWORD",
+                    "description": "This is the password used when setting up the initial administrator account to login to pgAdmin. This variable is required and must be set at launch time."
+                },
+                {
+                    "name": "PGADMIN_DISABLE_POSTFIX",
+                    "default": "true",
+                    "label": "PGADMIN_DISABLE_POSTFIX",
+                    "description": "Default: <null>  If left unset, a Postfix server will be started to deliver password reset emails.  If set to any value, the Postfix server will not be started, and pgAdmin will need to be configured to use an external mail server using the PGADMIN_CONFIG_ options below.  This option is useful if you’re running in an environment that prevents the use of sudo to start Postfix, or if you wish to use an external mail server."
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pgadmin.png",
             "network_mode": "bridge",
             "type": 1
         }

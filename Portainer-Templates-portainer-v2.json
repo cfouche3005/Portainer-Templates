@@ -1123,6 +1123,82 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pgadmin.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Redis 1go",
+            "name": "redis",
+            "image": "redis:alpine",
+            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "6379:6379/tcp"
+            ],
+	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
+            "network_mode": "bridge",
+            "mem_limit": "1024mo",
+            "type": 1
+        },
+        {
+            "title": "Redis 2go",
+            "name": "redis",
+            "image": "redis:alpine",
+            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "6379:6379/tcp"
+            ],
+	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
+            "network_mode": "bridge",
+            "mem_limit": "2048mo",
+            "type": 1
+        },
+        {
+            "title": "Redis 3go",
+            "name": "redis",
+            "image": "redis:alpine",
+            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "6379:6379/tcp"
+            ],
+	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
+            "network_mode": "bridge",
+            "mem_limit": "3072mo",
+            "type": 1
+        },
+        {
+            "title": "Redis 4go",
+            "name": "redis",
+            "image": "redis:alpine",
+            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "6379:6379/tcp"
+            ],
+	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
+            "network_mode": "bridge",
+            "mem_limit": "4096mo",
+            "type": 1
         }
     ]
 }

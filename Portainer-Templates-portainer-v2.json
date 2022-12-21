@@ -978,7 +978,7 @@
             "type": 1
         },
         {
-            "title": "Nextcloud",
+            "title": "Nextcloud Linuxserver.io",
             "name": "nextcloud",
             "image": "linuxserver/nextcloud:latest",
             "description": "Where are your photos and documents? With Nextcloud you pick a server of your choice, at home, in a data center or at a provider. And that is where your files will be. Nextcloud runs on that server, protecting your data and giving you access from your desktop or mobile devices.",
@@ -1137,7 +1137,7 @@
             "ports": [
                 "6379:6379/tcp"
             ],
-	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "command": "redis-server --requirepass 6G7qOtEcFsc4",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "1024mo",
@@ -1156,7 +1156,7 @@
             "ports": [
                 "6379:6379/tcp"
             ],
-	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "command": "redis-server --requirepass 6G7qOtEcFsc4",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "2048mo",
@@ -1175,7 +1175,7 @@
             "ports": [
                 "6379:6379/tcp"
             ],
-	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "command": "redis-server --requirepass 6G7qOtEcFsc4",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "3072mo",
@@ -1194,10 +1194,105 @@
             "ports": [
                 "6379:6379/tcp"
             ],
-	    "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "command": "redis-server --requirepass 6G7qOtEcFsc4",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "4096mo",
+            "type": 1
+        },
+        {
+            "title": "Nextcloud Official FPM",
+            "name": "nextcloud",
+            "image": "nextcloud:stable-fpm",
+            "description": "A safe home for all your data. Access & share your files, calendars, contacts, mail & more from any device, on your terms.",
+            "categories": [
+                "Files",
+                "Cloud",
+                "Web",
+                "Backup",
+                "Sync"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9000:9000/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/www/html",
+                    "bind": "/portainer/Files/AppData/Config/Nextcloud"
+                },
+                {
+                    "container": "/var/www/html/config",
+                    "bind": "/portainer/Files/AppData/Config/Nextcloud/config"
+                },
+                {
+                    "container": "/var/www/html/data",
+                    "bind": "/portainer/Files/AppData/Data/Nextcloud"
+                },
+                {
+                    "container": "/var/www/html/themes",
+                    "bind": "/portainer/Files/AppData/Config/Nextcloud/themes"
+                }
+            ],
+            "env": [
+                {
+                    "name": "POSTGRES_DB",
+                    "default": "",
+                    "label": "POSTGRES_DB",
+                    "description": "Name of the database using postgres"
+                },
+                {
+                    "name": "POSTGRES_USER",
+                    "default": "",
+                    "label": "POSTGRES_USER",
+                    "description": "Username for the database using postgres"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "default": "",
+                    "label": "POSTGRES_PASSWORD",
+                    "description": "Password for the database user using postgres"
+                },
+                {
+                    "name": "POSTGRES_HOST",
+                    "default": "",
+                    "description": "Hostname of the database server using postgres",
+                    "label": "POSTGRES_HOST"
+                },
+                {
+                    "name": "NEXTCLOUD_ADMIN_USER",
+                    "default": "",
+                    "label": "NEXTCLOUD_ADMIN_USER",
+                    "description": "Name of the Nextcloud admin user"
+                },
+                {
+                    "name": "NEXTCLOUD_ADMIN_PASSWORD",
+                    "default": "",
+                    "description": "Password for the Nextcloud admin user",
+                    "label": "NEXTCLOUD_ADMIN_PASSWORD"
+                },
+                {
+                    "name": "REDIS_HOST",
+                    "default": "",
+                    "label": "REDIS_HOST",
+                    "description": "(not set by default) Name of Redis container"
+                },
+                {
+                    "name": "REDIS_HOST_PORT",
+                    "default": "",
+                    "description": "(default: 6379) Optional port for Redis, only use for external Redis servers that run on non-standard ports.",
+                    "label": "REDIS_HOST_PORT"
+                },
+                {
+                    "name": "REDIS_HOST_PASSWORD",
+                    "default": "",
+                    "label": "REDIS_HOST_PASSWORD",
+                    "description": "(not set by default) Redis password"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
+            "network_mode": "bridge",
             "type": 1
         }
     ]

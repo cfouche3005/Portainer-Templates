@@ -1133,6 +1133,7 @@
                 "Database"
             ],
             "platform": "linux",
+            "note": "You need to manualy set the memory limit in portainer",
             "restart_policy": "unless-stopped",
             "ports": [
                 "6379:6379/tcp"
@@ -1152,11 +1153,17 @@
                 "Database"
             ],
             "platform": "linux",
+            "note": "You need to manualy set the memory limit in portainer",
             "restart_policy": "unless-stopped",
             "ports": [
                 "6379:6379/tcp"
             ],
             "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "sysctls": [
+                {
+                    "": ""
+                }
+            ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "2048mo",
@@ -1171,6 +1178,7 @@
                 "Database"
             ],
             "platform": "linux",
+            "note": "You need to manualy set the memory limit in portainer",
             "restart_policy": "unless-stopped",
             "ports": [
                 "6379:6379/tcp"
@@ -1190,6 +1198,7 @@
                 "Database"
             ],
             "platform": "linux",
+            "note": "You need to manualy set the memory limit in portainer",
             "restart_policy": "unless-stopped",
             "ports": [
                 "6379:6379/tcp"
@@ -1228,11 +1237,15 @@
                 },
                 {
                     "container": "/var/www/html/data",
-                    "bind": "/portainer/Files/AppData/Data/Nextcloud"
+                    "bind": "/portainer/Files/AppData/Data/Nextcloud/data"
                 },
                 {
                     "container": "/var/www/html/themes",
                     "bind": "/portainer/Files/AppData/Config/Nextcloud/themes"
+                },
+                {
+                    "container": "/var/www/html/custom_apps",
+                    "bind": "/portainer/Files/AppData/Config/Nextcloud/custom_apps"
                 }
             ],
             "env": [
@@ -1292,6 +1305,36 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Rclone",
+            "name": "rclone",
+            "image": "rclone/rclone:latest",
+            "description": "Rclone is a command-line program to manage files on cloud storage. It is a feature-rich alternative to cloud vendors' web storage interfaces. Over 40 cloud storage products support rclone including S3 object stores, business & consumer file storage services, as well as standard transfer protocols.",
+            "categories": [
+                "Files",
+                "Backup",
+                "Sync"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8554:8554/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config/rclone",
+                    "bind": "/portainer/Files/AppData/Config/Rclone"
+                },
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Data/Rclone/data"
+                }
+            ],
+            "command": "rclone rcd --rc-web-gui --rc-addr :8554 --rc-user cfouche --rc-pass BWJHYUDtUiJj",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/rclone.png",
             "network_mode": "bridge",
             "type": 1
         }

@@ -1368,30 +1368,6 @@
                     "description": "Enforce HTTPS."
                 },
                 {
-                    "name": "WHOOGLE_PROXY_USER",
-                    "default": "",
-                    "label": "WHOOGLE_PROXY_USER",
-                    "description": "The username of the proxy server."
-                },
-                {
-                    "name": "WHOOGLE_PROXY_PASS",
-                    "default": "",
-                    "label": "WHOOGLE_PROXY_PASS",
-                    "description": "The password of the proxy server."
-                },
-                {
-                    "name": "WHOOGLE_PROXY_TYPE",
-                    "default": "",
-                    "description": "The type of the proxy server. Can be \"socks5\", \"socks4\", or \"http\".",
-                    "label": "WHOOGLE_PROXY_TYPE"
-                },
-                {
-                    "name": "WHOOGLE_PROXY_LOC",
-                    "default": "0.0.0.0:8006",
-                    "description": "The location of the proxy server (host or ip).",
-                    "label": "WHOOGLE_PROXY_LOC"
-                },
-                {
                     "name": "WHOOGLE_AUTOCOMPLETE",
                     "default": "1",
                     "label": "WHOOGLE_AUTOCOMPLETE",
@@ -1411,7 +1387,7 @@
                 },
                 {
                     "name": "WHOOGLE_CONFIG_THEME",
-                    "default": "white",
+                    "default": "light",
                     "label": "WHOOGLE_CONFIG_THEME",
                     "description": "Set theme mode (light, dark, or system)"
                 },
@@ -1435,15 +1411,9 @@
                 },
                 {
                     "name": "WHOOGLE_CONFIG_URL",
-                    "default": "",
+                    "default": ":root { /* LIGHT THEME COLORS */ --whoogle-logo: #4c4f69; --whoogle-page-bg: #eff1f5; --whoogle-element-bg: #bcc0cc; --whoogle-text: #4c4f69; --whoogle-contrast-text: #5c5f77; --whoogle-secondary-text: #6c6f85; --whoogle-result-bg: #ccd0da; --whoogle-result-title: #7287fd; --whoogle-result-url: #dc8a78; --whoogle-result-visited: #e64553; } #whoogle-w { fill: #1e66f5; } #whoogle-h { fill: #d20f39; } #whoogle-o-1 { fill: #df8e1d; } #whoogle-o-2 { fill: #1e66f5; } #whoogle-g { fill: #40a02b; } #whoogle-l { fill: #d20f39; } #whoogle-e { fill: #df8e1d; }",
                     "label": "WHOOGLE_CONFIG_URL",
                     "description": "The root url of the instance (https://<your url>/)"
-                },
-                {
-                    "name": "WHOOGLE_CONFIG_STYLE",
-                    "default": ":root { /* LIGHT THEME COLORS */ --whoogle-logo: #4c4f69; --whoogle-page-bg: #eff1f5; --whoogle-element-bg: #bcc0cc; --whoogle-text: #4c4f69; --whoogle-contrast-text: #5c5f77; --whoogle-secondary-text: #6c6f85; --whoogle-result-bg: #ccd0da; --whoogle-result-title: #7287fd; --whoogle-result-url: #dc8a78; --whoogle-result-visited: #e64553; } #whoogle-w { fill: #1e66f5; } #whoogle-h { fill: #d20f39; } #whoogle-o-1 { fill: #df8e1d; } #whoogle-o-2 { fill: #1e66f5; } #whoogle-g { fill: #40a02b; } #whoogle-l { fill: #d20f39; } #whoogle-e { fill: #df8e1d; }",
-                    "label": "WHOOGLE_CONFIG_STYLE",
-                    "description": "The custom CSS to use for styling (should be single line)"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whooglesearch.png",

@@ -1159,11 +1159,6 @@
                 "6379:6379/tcp"
             ],
             "command": "redis-server --requirepass 6G7qOtEcFsc4",
-            "sysctls": [
-                {
-                    "": ""
-                }
-            ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "2048mo",
@@ -1333,8 +1328,41 @@
                     "bind": "/portainer/Files/AppData/Data/Rclone/data"
                 }
             ],
-            "command": "rclone rcd --rc-web-gui --rc-addr :8554 --rc-user cfouche --rc-pass BWJHYUDtUiJj",
+            "command": "rcd --rc-web-gui --rc-addr :8554 --rc-htpasswd /config/rclone/.htpasswd --rc-enable-metrics --rc-web-gui-no-open-browser",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/rclone.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Whoogle Search",
+            "name": "whoogle",
+            "image": "benbusby/whoogle-search:latest",
+            "description": "Get Google search results, but without any ads, javascript, AMP links, cookies, or IP address tracking. Easily deployable in one click as a Docker app, and customizable with a single config file. Quick and simple to implement as a primary search engine replacement on both desktop and mobile.",
+            "categories": [
+                "Search",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8005:5000/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Whoogle"
+                }
+            ],
+            "env": [
+                {
+                    "name": "WHOOGLE_DOTENV",
+                    "default": "1",
+                    "label": "WHOOGLE_DOTENV",
+                    "description": "Load environment variables in whoogle.env"
+                }
+            ],
+            "command": "--env-file /config/whoogle.env",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whooglesearch.png",
             "network_mode": "bridge",
             "type": 1
         }

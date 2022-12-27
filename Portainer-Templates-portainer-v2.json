@@ -1345,7 +1345,8 @@
             "platform": "linux",
             "restart_policy": "unless-stopped",
             "ports": [
-                "8005:5000/tcp"
+                "8005:8005/tcp",
+                "8006:8006/tcp"
             ],
             "volumes": [
                 {
@@ -1355,13 +1356,96 @@
             ],
             "env": [
                 {
-                    "name": "WHOOGLE_DOTENV",
+                    "name": "EXPOSE_PORT",
+                    "default": "8005",
+                    "label": "EXPOSE_PORT",
+                    "description": "\tThe port where Whoogle will be exposed."
+                },
+                {
+                    "name": "HTTPS_ONLY",
+                    "default": "0",
+                    "label": "HTTPS_ONLY",
+                    "description": "Enforce HTTPS."
+                },
+                {
+                    "name": "WHOOGLE_PROXY_USER",
+                    "default": "",
+                    "label": "WHOOGLE_PROXY_USER",
+                    "description": "The username of the proxy server."
+                },
+                {
+                    "name": "WHOOGLE_PROXY_PASS",
+                    "default": "",
+                    "label": "WHOOGLE_PROXY_PASS",
+                    "description": "The password of the proxy server."
+                },
+                {
+                    "name": "WHOOGLE_PROXY_TYPE",
+                    "default": "",
+                    "description": "The type of the proxy server. Can be \"socks5\", \"socks4\", or \"http\".",
+                    "label": "WHOOGLE_PROXY_TYPE"
+                },
+                {
+                    "name": "WHOOGLE_PROXY_LOC",
+                    "default": "0.0.0.0:8006",
+                    "description": "The location of the proxy server (host or ip).",
+                    "label": "WHOOGLE_PROXY_LOC"
+                },
+                {
+                    "name": "WHOOGLE_AUTOCOMPLETE",
                     "default": "1",
-                    "label": "WHOOGLE_DOTENV",
-                    "description": "Load environment variables in whoogle.env"
+                    "label": "WHOOGLE_AUTOCOMPLETE",
+                    "description": "Controls visibility of autocomplete/search suggestions. Default on -- use '0' to disable."
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_DISABLE",
+                    "default": "0",
+                    "label": "WHOOGLE_CONFIG_DISABLE",
+                    "description": "Hide config from UI and disallow changes to config by client"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_LANGUAGE\t",
+                    "default": "fr",
+                    "label": "WHOOGLE_CONFIG_LANGUAGE\t",
+                    "description": "Set interface language"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_THEME",
+                    "default": "white",
+                    "label": "WHOOGLE_CONFIG_THEME",
+                    "description": "Set theme mode (light, dark, or system)"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_ALTS",
+                    "default": "0",
+                    "label": "WHOOGLE_CONFIG_ALTS",
+                    "description": "Use social media site alternatives (nitter, invidious, etc)"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_VIEW_IMAGE",
+                    "default": "1",
+                    "label": "WHOOGLE_CONFIG_VIEW_IMAGE",
+                    "description": "Enable View Image option"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_GET_ONLY",
+                    "default": "1",
+                    "description": "Search using GET requests only",
+                    "label": "WHOOGLE_CONFIG_GET_ONLY"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_URL",
+                    "default": "",
+                    "label": "WHOOGLE_CONFIG_URL",
+                    "description": "The root url of the instance (https://<your url>/)"
+                },
+                {
+                    "name": "WHOOGLE_CONFIG_STYLE",
+                    "default": ":root { /* LIGHT THEME COLORS */ --whoogle-logo: #4c4f69; --whoogle-page-bg: #eff1f5; --whoogle-element-bg: #bcc0cc; --whoogle-text: #4c4f69; --whoogle-contrast-text: #5c5f77; --whoogle-secondary-text: #6c6f85; --whoogle-result-bg: #ccd0da; --whoogle-result-title: #7287fd; --whoogle-result-url: #dc8a78; --whoogle-result-visited: #e64553; } #whoogle-w { fill: #1e66f5; } #whoogle-h { fill: #d20f39; } #whoogle-o-1 { fill: #df8e1d; } #whoogle-o-2 { fill: #1e66f5; } #whoogle-g { fill: #40a02b; } #whoogle-l { fill: #d20f39; } #whoogle-e { fill: #df8e1d; }",
+                    "label": "WHOOGLE_CONFIG_STYLE",
+                    "description": "The custom CSS to use for styling (should be single line)"
                 }
             ],
-            "command": "--env-file /config/whoogle.env",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whooglesearch.png",
             "network_mode": "bridge",
             "type": 1

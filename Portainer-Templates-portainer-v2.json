@@ -1345,8 +1345,7 @@
             "platform": "linux",
             "restart_policy": "unless-stopped",
             "ports": [
-                "8005:8005/tcp",
-                "8006:8006/tcp"
+                "8005:8005/tcp"
             ],
             "volumes": [
                 {
@@ -1359,7 +1358,7 @@
                     "name": "EXPOSE_PORT",
                     "default": "8005",
                     "label": "EXPOSE_PORT",
-                    "description": "\tThe port where Whoogle will be exposed."
+                    "description": "The port where Whoogle will be exposed."
                 },
                 {
                     "name": "HTTPS_ONLY",
@@ -1414,10 +1413,16 @@
                     "default": ":root { /* LIGHT THEME COLORS */ --whoogle-logo: #4c4f69; --whoogle-page-bg: #eff1f5; --whoogle-element-bg: #bcc0cc; --whoogle-text: #4c4f69; --whoogle-contrast-text: #5c5f77; --whoogle-secondary-text: #6c6f85; --whoogle-result-bg: #ccd0da; --whoogle-result-title: #7287fd; --whoogle-result-url: #dc8a78; --whoogle-result-visited: #e64553; } #whoogle-w { fill: #1e66f5; } #whoogle-h { fill: #d20f39; } #whoogle-o-1 { fill: #df8e1d; } #whoogle-o-2 { fill: #1e66f5; } #whoogle-g { fill: #40a02b; } #whoogle-l { fill: #d20f39; } #whoogle-e { fill: #df8e1d; }",
                     "label": "WHOOGLE_CONFIG_URL",
                     "description": "The root url of the instance (https://<your url>/)"
+                },
+                {
+                    "name": "WHOOGLE_TOR_SERVICE",
+                    "default": "0",
+                    "label": "WHOOGLE_TOR_SERVICE",
+                    "description": "Enable/disable the Tor service on startup. Default on -- use '0' to disable."
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whooglesearch.png",
-            "network_mode": "bridge",
+            "network_mode": "host",
             "type": 1
         }
     ]

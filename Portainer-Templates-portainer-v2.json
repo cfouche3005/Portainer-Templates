@@ -1125,67 +1125,7 @@
             "type": 1
         },
         {
-            "title": "Redis 1go",
-            "name": "redis",
-            "image": "redis:alpine",
-            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
-            "categories": [
-                "Database"
-            ],
-            "platform": "linux",
-            "note": "You need to manualy set the memory limit in portainer",
-            "restart_policy": "unless-stopped",
-            "ports": [
-                "6379:6379/tcp"
-            ],
-            "command": "redis-server --requirepass 6G7qOtEcFsc4",
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
-            "network_mode": "bridge",
-            "mem_limit": "1024mo",
-            "type": 1
-        },
-        {
-            "title": "Redis 2go",
-            "name": "redis",
-            "image": "redis:alpine",
-            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
-            "categories": [
-                "Database"
-            ],
-            "platform": "linux",
-            "note": "You need to manualy set the memory limit in portainer",
-            "restart_policy": "unless-stopped",
-            "ports": [
-                "6379:6379/tcp"
-            ],
-            "command": "redis-server --requirepass 6G7qOtEcFsc4",
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
-            "network_mode": "bridge",
-            "mem_limit": "2048mo",
-            "type": 1
-        },
-        {
-            "title": "Redis 3go",
-            "name": "redis",
-            "image": "redis:alpine",
-            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
-            "categories": [
-                "Database"
-            ],
-            "platform": "linux",
-            "note": "You need to manualy set the memory limit in portainer",
-            "restart_policy": "unless-stopped",
-            "ports": [
-                "6379:6379/tcp"
-            ],
-            "command": "redis-server --requirepass 6G7qOtEcFsc4",
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
-            "network_mode": "bridge",
-            "mem_limit": "3072mo",
-            "type": 1
-        },
-        {
-            "title": "Redis 4go",
+            "title": "Redis",
             "name": "redis",
             "image": "redis:alpine",
             "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
@@ -1423,6 +1363,72 @@
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whooglesearch.png",
             "network_mode": "host",
+            "type": 1
+        },
+        {
+            "title": "N8N",
+            "name": "n8n",
+            "image": "n8nio/n8n:latest",
+            "description": "The workflow automation platform that doesn't box you in, that you never outgrow",
+            "categories": [
+                "Automations",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "5678:5678/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/home/node/.n8n",
+                    "bind": "/portainer/Files/AppData/Config/N8N"
+                }
+            ],
+            "env": [
+                {
+                    "name": "DB_POSTGRESDB_DATABASE",
+                    "default": "",
+                    "label": "DB_POSTGRESDB_DATABASE"
+                },
+                {
+                    "name": "DB_POSTGRESDB_HOST",
+                    "default": "",
+                    "label": "DB_POSTGRESDB_HOST"
+                },
+                {
+                    "name": "DB_POSTGRESDB_PORT",
+                    "default": "",
+                    "label": "DB_POSTGRESDB_PORT"
+                },
+                {
+                    "name": "DB_POSTGRESDB_USER",
+                    "default": "",
+                    "label": "DB_POSTGRESDB_USER"
+                },
+                {
+                    "name": "DB_POSTGRESDB_SCHEMA",
+                    "default": "",
+                    "label": "DB_POSTGRESDB_SCHEMA"
+                },
+                {
+                    "name": "DB_POSTGRESDB_PASSWORD",
+                    "default": "",
+                    "label": "DB_POSTGRESDB_PASSWORD"
+                },
+                {
+                    "name": "GENERIC_TIMEZONE",
+                    "default": "Europe/Paris",
+                    "label": "GENERIC_TIMEZONE"
+                },
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/n8n.png",
+            "network_mode": "bridge",
             "type": 1
         }
     ]

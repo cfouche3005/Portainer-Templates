@@ -1505,6 +1505,31 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefox.png",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "Chadburn",
+            "name": "chadburn",
+            "image": "premoweb/chadburn:latest",
+            "description": "Chadburn is a modern and low footprint job scheduler for docker environments, written in Go. Chadburn aims to be a replacement for the old fashioned cron.",
+            "categories": [
+                "Automation",
+                "Docker"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/var/run/docker.sock",
+                    "bind": "/var/run/docker.sock"
+                },
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Chadburn"
+                }
+            ],
+            "command": "daemon --config=/config/config.ini",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
+            "type": 1
         }
     ]
 }

@@ -1530,6 +1530,31 @@
             "command": "daemon --config=/config/config.ini",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
             "type": 1
+        },
+        {
+            "title": "FerretDB",
+            "name": "ferretdb",
+            "image": "ghcr.io/ferretdb/ferretdb:latest",
+            "description": "FerretDB (formerly MangoDB) is an open-source proxy that translates MongoDB wire protocol queries to SQL, with PostgreSQL as the database engine.",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "27017:27017/tcp"
+            ],
+            "env": [
+                {
+                    "name": "FERRETDB_POSTGRESQL_URL",
+                    "default": "",
+                    "label": "FERRETDB_POSTGRESQL_URL",
+                    "description": "PostgreSQL URL for pg handler"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ferretdb-white.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

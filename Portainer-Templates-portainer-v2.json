@@ -1555,6 +1555,41 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ferretdb-white.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "MongoDB",
+            "name": "mongodb",
+            "image": "mongo:latest",
+            "description": "MongoDB is a free and open-source cross-platform document-oriented database program.",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "27017:27017/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data/db",
+                    "bind": "/portainer/Files/AppData/Data/MongoDB"
+                }
+            ],
+            "env": [
+                {
+                    "name": "MONGO_INITDB_ROOT_USERNAME",
+                    "default": "",
+                    "label": "MONGO_INITDB_ROOT_USERNAME"
+                },
+                {
+                    "name": "MONGO_INITDB_ROOT_PASSWORD",
+                    "default": "",
+                    "label": "MONGO_INITDB_ROOT_PASSWORD"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mongodb.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

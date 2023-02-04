@@ -1590,6 +1590,35 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mongodb.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Gitea",
+            "name": "gitea",
+            "image": "gitea/gitea:latest",
+            "description": "Gitea est un service Git auto-hébergé très simple à installer et à utiliser. Il est similaire à GitHub, Bitbucket ou Gitlab",
+            "categories": [
+                "Devellopement",
+                "Git"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8069:3000/tcp",
+                "2222:22/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Data/Gitea"
+                },
+                {
+                    "container": "/data/gitea/conf",
+                    "bind": "/portainer/Files/AppData/Data/Gitea"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

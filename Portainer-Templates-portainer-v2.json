@@ -1622,7 +1622,7 @@
         },
         {
             "title": "Wireguard-UI",
-            "name": "wg-gen-web",
+            "name": "wireguard-ui",
             "image": "ngoduykhanh/wireguard-ui:latest",
             "description": "A web user interface to manage your WireGuard setup.",
             "categories": [
@@ -1641,7 +1641,7 @@
                 },
                 {
                     "container": "/app",
-                    "bind": "/portainer/Files/AppData/Config"
+                    "bind": "/portainer/Files/AppData/Config/Wireguard"
                 }
             ],
             "env": [
@@ -1656,6 +1656,57 @@
                     "default": "",
                     "label": "WGUI_PASSWORD_HASH",
                     "description": "The password hash for the user on the login page. (alternative to WGUI_PASSWORD). Used for db initialization only"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "WireGuard Easy",
+            "name": "wg-easy",
+            "image": "weejewel/wg-easy:latest",
+            "description": "You have found the easiest way to install & manage WireGuard on any Linux host!",
+            "categories": [
+                "VPN",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "51820:51820/udp",
+                "51821:51821/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/wireguard",
+                    "bind": "/portainer/Files/AppData/Config/Wireguard"
+                }
+            ],
+            "env": [
+                {
+                    "name": "PASSWORD",
+                    "default": "",
+                    "label": "PASSWORD",
+                    "description": "When set, requires a password when logging in to the Web UI."
+                },
+                {
+                    "name": "WG_HOST",
+                    "default": "",
+                    "label": "WG_HOST",
+                    "description": "The public hostname of your VPN server."
+                },
+                {
+                    "name": "WG_DEFAULT_ADDRESS",
+                    "default": "10.69.0.x",
+                    "label": "WG_DEFAULT_ADDRESS",
+                    "description": "Clients IP address range."
+                },
+                {
+                    "name": "WG_DEFAULT_DNS",
+                    "default": "1.1.1.1, 1.0.0.1",
+                    "description": "DNS server clients will use.",
+                    "label": "WG_DEFAULT_DNS"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png",

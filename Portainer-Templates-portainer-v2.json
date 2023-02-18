@@ -1619,6 +1619,48 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Wireguard-UI",
+            "name": "wg-gen-web",
+            "image": "ngoduykhanh/wireguard-ui:latest",
+            "description": "A web user interface to manage your WireGuard setup.",
+            "categories": [
+                "VPN",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8073:5000/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/wireguard",
+                    "bind": "/etc/wireguard"
+                },
+                {
+                    "container": "/app",
+                    "bind": "/portainer/Files/AppData/Config"
+                }
+            ],
+            "env": [
+                {
+                    "name": "SESSION_SECRET",
+                    "default": "",
+                    "label": "SESSION_SECRET",
+                    "description": "The secret key used to encrypt the session cookies. Set this to a random value."
+                },
+                {
+                    "name": "WGUI_PASSWORD_HASH",
+                    "default": "",
+                    "label": "WGUI_PASSWORD_HASH",
+                    "description": "The password hash for the user on the login page. (alternative to WGUI_PASSWORD). Used for db initialization only"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

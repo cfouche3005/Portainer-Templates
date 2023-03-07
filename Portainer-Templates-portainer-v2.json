@@ -1744,6 +1744,10 @@
                 {
                     "container": "/config",
                     "bind": "/portainer/Files/AppData/Config/QBittorent"
+                },
+                {
+                    "container": "/config/data",
+                    "bind": "/portainer/Files/AppData/Data/QBittorent"
                 }
             ],
             "env": [

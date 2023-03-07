@@ -1448,8 +1448,12 @@
             ],
             "volumes": [
                 {
-                    "container": "/docker/appdata/firefox",
+                    "container": "/config",
                     "bind": "/portainer/Files/AppData/Config/Firefox"
+                },
+                {
+                    "container": "/config/downloads",
+                    "bind": "/portainer/Files/AppData/Data/Firefox/downloads"
                 }
             ],
             "env": [
@@ -1613,7 +1617,7 @@
                 },
                 {
                     "container": "/data/gitea/conf",
-                    "bind": "/portainer/Files/AppData/Data/Gitea"
+                    "bind": "/portainer/Files/AppData/Config/Gitea"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
@@ -1709,8 +1713,47 @@
                     "label": "WG_DEFAULT_DNS"
                 }
             ],
+            "sysctls": [
+                {
+                    "net.ipv4.ip_forward": "1"
+                }
+            ],
+            "cap_add": [
+                "NET_ADMIN",
+                "SYS_MODULE"
+            ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wireguard.png",
             "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "QBittorrent",
+            "name": "qbittorrent",
+            "image": "hotio/qbittorrent:latest",
+            "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg. With Vuetorrent",
+            "categories": [
+                "Downloads",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8093:8080/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/QBittorent"
+                }
+            ],
+            "env": [
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/qbittorrent.png",
             "type": 1
         }
     ]

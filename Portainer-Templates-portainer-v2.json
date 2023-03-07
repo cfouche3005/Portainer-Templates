@@ -1729,8 +1729,8 @@
         {
             "title": "QBittorrent",
             "name": "qbittorrent",
-            "image": "hotio/qbittorrent:latest",
-            "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg. With Vuetorrent",
+            "image": "lscr.io/linuxserver/qbittorrent:latest",
+            "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg.",
             "categories": [
                 "Downloads",
                 "Web"
@@ -1738,12 +1738,16 @@
             "platform": "linux",
             "restart_policy": "unless-stopped",
             "ports": [
-                "8093:8080/tcp"
+                "8093:8093/tcp"
             ],
             "volumes": [
                 {
                     "container": "/config",
                     "bind": "/portainer/Files/AppData/Config/QBittorent"
+                },
+                {
+                    "container": "/downloads",
+                    "bind": "/portainer/Files/AppData/Data/QBittorent/downloads"
                 }
             ],
             "env": [
@@ -1751,9 +1755,15 @@
                     "name": "TZ",
                     "default": "Europe/Paris",
                     "label": "TZ"
+                },
+                {
+                    "name": "WEBUI_PORT",
+                    "default": "8093",
+                    "label": "WEBUI_PORT"
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/qbittorrent.png",
+            "network_mode": "bridge",
             "type": 1
         }
     ]

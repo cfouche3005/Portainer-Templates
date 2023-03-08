@@ -1713,11 +1713,6 @@
                     "label": "WG_DEFAULT_DNS"
                 }
             ],
-            "sysctls": [
-                {
-                    "net.ipv4.ip_forward": "1"
-                }
-            ],
             "cap_add": [
                 "NET_ADMIN",
                 "SYS_MODULE"
@@ -1727,7 +1722,7 @@
             "type": 1
         },
         {
-            "title": "QBittorrent",
+            "title": "QBittorrent (linuxserver)",
             "name": "qbittorrent",
             "image": "lscr.io/linuxserver/qbittorrent:latest",
             "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg.",
@@ -1736,6 +1731,7 @@
                 "Web"
             ],
             "platform": "linux",
+            "note": "Libtorrent V2",
             "restart_policy": "unless-stopped",
             "ports": [
                 "8093:8093/tcp"
@@ -1763,6 +1759,95 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/qbittorrent.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "QBittorrent (hotio)",
+            "name": "qbittorrent",
+            "image": "hotio/qbittorrent:latest",
+            "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg. With Vuetorrent and vpn included (https://hotio.dev/containers/qbittorrent/)",
+            "categories": [
+                "Downloads",
+                "Web"
+            ],
+            "platform": "linux",
+            "note": "Libtorrent V1",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8093:8093/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/QBittorent"
+                }
+            ],
+            "env": [
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                },
+                {
+                    "name": "WEBUI_PORTS",
+                    "default": "8093/tcp,8093/udp",
+                    "label": "WEBUI_PORTS"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/qbittorrent.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Transmission",
+            "name": "transmission",
+            "image": "lscr.io/linuxserver/transmission:latest",
+            "description": "Transmission is designed for easy, powerful use. We've set the defaults to just work and it only takes a few clicks to configure advanced features like watch directories, bad peer blocklists, and the web interface. When Ubuntu chose Transmission as its default BitTorrent client, one of the most-cited reasons was its easy learning curve.",
+            "categories": [
+                "Downloads",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9091:9091/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Transmission"
+                },
+                {
+                    "container": "/downloads",
+                    "bind": "/portainer/Files/AppData/Data/Transmission/downloads"
+                },
+                {
+                    "container": "/watch",
+                    "bind": "/portainer/Files/AppData/Data/Transmission/watch"
+                }
+            ],
+            "env": [
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ",
+                    "description": "specify a timezone to use, see this https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List"
+                },
+                {
+                    "name": "USER",
+                    "default": "",
+                    "label": "USER",
+                    "description": "Specify an optional username for the interface"
+                },
+                {
+                    "name": "PASS",
+                    "default": "",
+                    "label": "PASS",
+                    "description": "Specify an optional password for the interface"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/transmission.png",
             "network_mode": "bridge",
             "type": 1
         }

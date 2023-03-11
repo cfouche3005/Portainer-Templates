@@ -1865,6 +1865,7 @@
                 "UI"
             ],
             "platform": "linux",
+            "restart_policy": "unless-stopped",
             "ports": [
                 "3000:3000/tcp"
             ],
@@ -1882,6 +1883,41 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/flood.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Filebrowser",
+            "name": "filebrowser",
+            "image": "hurlenko/filebrowser:latest",
+            "description": "Filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. It allows the creation of multiple users and each user can have its own directory. It can be used as a standalone app or as a middleware.",
+            "categories": [
+                "Files",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8932:8932/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Filebrowser"
+                },
+                {
+                    "container": "/data",
+                    "bind": ""
+                }
+            ],
+            "env": [
+                {
+                    "name": "FB_PORT",
+                    "default": "8932",
+                    "label": "FB_PORT"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/filebrowser.png",
             "network_mode": "bridge",
             "type": 1
         }

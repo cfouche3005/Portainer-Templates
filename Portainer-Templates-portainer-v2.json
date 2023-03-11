@@ -1728,7 +1728,8 @@
             "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg.",
             "categories": [
                 "Downloads",
-                "Web"
+                "Web",
+                "Torrents"
             ],
             "platform": "linux",
             "note": "Libtorrent V2",
@@ -1769,7 +1770,8 @@
             "description": "qBittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg. With Vuetorrent and vpn included (https://hotio.dev/containers/qbittorrent/)",
             "categories": [
                 "Downloads",
-                "Web"
+                "Web",
+                "Torrents"
             ],
             "platform": "linux",
             "note": "Libtorrent V1",
@@ -1806,7 +1808,8 @@
             "description": "Transmission is designed for easy, powerful use. We've set the defaults to just work and it only takes a few clicks to configure advanced features like watch directories, bad peer blocklists, and the web interface. When Ubuntu chose Transmission as its default BitTorrent client, one of the most-cited reasons was its easy learning curve.",
             "categories": [
                 "Downloads",
-                "Web"
+                "Web",
+                "Torrents"
             ],
             "platform": "linux",
             "restart_policy": "unless-stopped",
@@ -1848,6 +1851,37 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/transmission.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Flood",
+            "name": "flood",
+            "image": "jesec/flood:latest",
+            "description": "Flood is a monitoring service for various torrent clients. It's a Node.js service that communicates with your favorite torrent client and serves a decent web UI for administration.",
+            "categories": [
+                "Web",
+                "Torrents",
+                "UI"
+            ],
+            "platform": "linux",
+            "ports": [
+                "3000:3000/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Config/Flood"
+                }
+            ],
+            "env": [
+                {
+                    "name": "FLOOD_OPTION_port",
+                    "default": "3000",
+                    "label": "FLOOD_OPTION_port"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/flood.png",
             "network_mode": "bridge",
             "type": 1
         }

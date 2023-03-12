@@ -1920,6 +1920,42 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/filebrowser.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "PyLoad",
+            "name": "pyload",
+            "image": "lscr.io/linuxserver/pyload-ng:latest",
+            "description": "pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web.",
+            "categories": [
+                "Web",
+                "Downloads"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8000:8000/tcp",
+                "9666:9666/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/PyLoad"
+                },
+                {
+                    "container": "/downloads",
+                    "bind": "/portainer/Downloads/pyload"
+                }
+            ],
+            "env": [
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pyload.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

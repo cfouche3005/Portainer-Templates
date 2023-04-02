@@ -1956,6 +1956,36 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pyload.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "QuestDB",
+            "name": "questdb",
+            "image": "questdb/questdb:latest",
+            "description": "Columnar time-series database with high performance ingestion and SQL analytics you know and love from QuestDB open source, now on the cloud.",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9000:9000/tcp",
+                "9009:9009/tcp",
+                "8812:8812/tcp",
+                "9003:9003/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/lib/questdb/config",
+                    "bind": "/portainer/Files/AppData/Config/QuestDB"
+                },
+                {
+                    "container": "/var/lib/questdb",
+                    "bind": "/portainer/Files/AppData/Data/QuestDB"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/cfouche3005/dashboard-icons@questdb/png/questdb.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

@@ -1983,7 +1983,57 @@
                     "bind": "/portainer/Files/AppData/Data/QuestDB"
                 }
             ],
-            "logo": "https://cdn.jsdelivr.net/gh/cfouche3005/dashboard-icons@questdb/png/questdb.png",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/questdb.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "What's up Docker ?",
+            "name": "wud",
+            "image": "fmartinou/whats-up-docker:latest",
+            "description": "Gets you notified when new versions of your Docker containers are available and lets you react the way you want.",
+            "categories": [
+                "Docker",
+                "Monitoring"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "3000:3000/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/store",
+                    "bind": "/portainer/Files/AppData/Config/WUP"
+                }
+            ],
+            "env": [
+                {
+                    "name": "WUD_SERVER_PORT",
+                    "default": "3000",
+                    "label": "WUD_SERVER_PORT",
+                    "description": "Http listener port"
+                },
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ",
+                    "description": "Timezone"
+                },
+                {
+                    "name": "WUD_AUTH_BASIC_ADMIN_USER",
+                    "default": "",
+                    "label": "WUD_AUTH_BASIC_ADMIN_USER",
+                    "description": "Username"
+                },
+                {
+                    "name": "WUD_AUTH_BASIC_ADMIN_HASH\t",
+                    "default": "",
+                    "label": "WUD_AUTH_BASIC_ADMIN_HASH\t",
+                    "description": "Htpasswd compliant hash"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whats-up-docker.png",
             "network_mode": "bridge",
             "type": 1
         }

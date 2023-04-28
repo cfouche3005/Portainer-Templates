@@ -2005,6 +2005,10 @@
                 {
                     "container": "/store",
                     "bind": "/portainer/Files/AppData/Config/WUP"
+                },
+                {
+                    "container": "/var/run/docker.sock",
+                    "bind": "/var/run/docker.sock"
                 }
             ],
             "env": [

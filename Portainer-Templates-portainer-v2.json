@@ -27,7 +27,7 @@
                     "bind": "/portainer/Files/AppData/Config/Caddy/config"
                 }
             ],
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/caddy.svg",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/caddy.png",
             "network_mode": "host",
             "type": 1
         },
@@ -686,7 +686,7 @@
                     "bind": "/portainer/Files/AppData/Config/Caddy/config"
                 }
             ],
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/caddy.svg",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/caddy.png",
             "network_mode": "host",
             "type": 1
         },
@@ -709,7 +709,7 @@
                 }
             ],
             "command": "daemon",
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/letsencrypt.png",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/lets-encrypt.png",
             "network_mode": "bridge",
             "type": 1
         },
@@ -776,7 +776,7 @@
                     "bind": "/portainer/Files/AppData/Config/Nginx-Proxy-Manager/letsencrypt"
                 }
             ],
-            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nginxproxymanager.png",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nginx-proxy-manager.png",
             "network_mode": "bridge",
             "type": 1
         },
@@ -1366,7 +1366,7 @@
             "type": 1
         },
         {
-            "title": "N8N",
+            "title": "N8N PostgreSQL",
             "name": "n8n",
             "image": "n8nio/n8n:latest",
             "description": "The workflow automation platform that doesn't box you in, that you never outgrow",
@@ -1386,6 +1386,11 @@
                 }
             ],
             "env": [
+                {
+                    "name": "DB_TYPE",
+                    "default": "postgresdb",
+                    "label": "DB_TYPE"
+                },
                 {
                     "name": "DB_POSTGRESDB_DATABASE",
                     "default": "",
@@ -1415,6 +1420,72 @@
                     "name": "DB_POSTGRESDB_PASSWORD",
                     "default": "",
                     "label": "DB_POSTGRESDB_PASSWORD"
+                },
+                {
+                    "name": "GENERIC_TIMEZONE",
+                    "default": "Europe/Paris",
+                    "label": "GENERIC_TIMEZONE"
+                },
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/n8n.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "N8N MySQL",
+            "name": "n8n",
+            "image": "n8nio/n8n:latest",
+            "description": "The workflow automation platform that doesn't box you in, that you never outgrow",
+            "categories": [
+                "Automations",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "5678:5678/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/home/node/.n8n",
+                    "bind": "/portainer/Files/AppData/Config/N8N"
+                }
+            ],
+            "env": [
+                {
+                    "name": "DB_TYPE",
+                    "default": "mysqldb",
+                    "label": "DB_TYPE"
+                },
+                {
+                    "name": "DB_MYSQLDB_DATABASE",
+                    "default": "",
+                    "label": "DB_MYSQLDB_DATABASE"
+                },
+                {
+                    "name": "DB_MYSQLDB_HOST",
+                    "default": "",
+                    "label": "DB_MYSQLDB_HOST"
+                },
+                {
+                    "name": "DB_MYSQLDB_PORT",
+                    "default": "",
+                    "label": "DB_MYSQLDB_PORT"
+                },
+                {
+                    "name": "DB_MYSQLDB_USER",
+                    "default": "",
+                    "label": "DB_MYSQLDB_USER"
+                },
+                {
+                    "name": "DB_MYSQLDB_PASSWORD",
+                    "default": "",
+                    "label": "DB_MYSQLDB_PASSWORD"
                 },
                 {
                     "name": "GENERIC_TIMEZONE",

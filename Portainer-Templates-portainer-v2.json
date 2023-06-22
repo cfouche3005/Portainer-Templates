@@ -2111,6 +2111,27 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whats-up-docker.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Headscale",
+            "name": "headscale",
+            "image": "headscale/headscale:latest",
+            "description": "An open source, self-hosted implementation of the Tailscale control server.",
+            "categories": [
+                "VPN"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/etc/headscale",
+                    "bind": "/portainer/Files/AppData/Config/Headscale"
+                }
+            ],
+            "command": "headscale serve",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+            "network_mode": "host",
+            "type": 1
         }
     ]
 }

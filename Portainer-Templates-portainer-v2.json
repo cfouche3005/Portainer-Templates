@@ -1145,6 +1145,26 @@
             "type": 1
         },
         {
+            "title": "Redis No Pass",
+            "name": "redis",
+            "image": "redis:alpine",
+            "description": "Redis is an open-source, networked, in-memory, key-value data store with optional durability. It is written in ANSI C. ",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "note": "You need to manualy set the memory limit in portainer",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "6379:6379/tcp"
+            ],
+            "command": "redis-server",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
+            "network_mode": "bridge",
+            "mem_limit": "4096mo",
+            "type": 1
+        },
+        {
             "title": "Nextcloud Official FPM",
             "name": "nextcloud",
             "image": "nextcloud:stable-fpm",

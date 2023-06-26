@@ -2171,6 +2171,34 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "Doku",
+            "name": "doku",
+            "image": "amerkurev/doku:latest",
+            "description": "Doku is a simple, lightweight web-based application that allows you to monitor Docker disk usage in a user-friendly manner. The Doku displays the amount of disk space used by the Docker daemon, splits by images, containers, volumes, and builder cache. If you're lucky, you'll also see the sizes of log files :)",
+            "categories": [
+                "Docker",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9090:9090/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/run/docker.sock",
+                    "bind": "/var/run/docker.sock"
+                },
+                {
+                    "container": "/hostroot",
+                    "bind": "/"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

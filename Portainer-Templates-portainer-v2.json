@@ -1138,7 +1138,19 @@
             "ports": [
                 "6379:6379/tcp"
             ],
-            "command": "redis-server --requirepass 6G7qOtEcFsc4",
+            "env": [
+                {
+                    "name": "PORT",
+                    "default": "6379",
+                    "label": "PORT"
+                },
+                {
+                    "name": "PASS",
+                    "default": "6G7qOtEcFsc4",
+                    "label": "PASS"
+                }
+            ],
+            "command": "redis-server --requirepass $PASS --port $PORT",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "4096mo",
@@ -1158,7 +1170,14 @@
             "ports": [
                 "6379:6379/tcp"
             ],
-            "command": "redis-server",
+            "env": [
+                {
+                    "name": "PORT",
+                    "default": "6379",
+                    "label": "PORT"
+                }
+            ],
+            "command": "redis-server --port $PORT",
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/redis.png",
             "network_mode": "bridge",
             "mem_limit": "4096mo",

@@ -2199,6 +2199,47 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Authentik Proxy Outpost",
+            "name": "authentik_proxy_outpost",
+            "image": "ghcr.io/goauthentik/proxy:latest",
+            "description": "An outpost is a single deployment of an authentik component, which can be deployed in a completely separate environment: Proxy",
+            "categories": [
+                "Web",
+                "Security"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9000:9000/tcp",
+                "9443:9443/tcp"
+            ],
+            "env": [
+                {
+                    "name": "AUTHENTIK_HOST",
+                    "default": "",
+                    "label": "AUTHENTIK_HOST"
+                },
+                {
+                    "name": "AUTHENTIK_INSECURE",
+                    "default": "",
+                    "label": "AUTHENTIK_INSECURE"
+                },
+                {
+                    "name": "AUTHENTIK_TOKEN",
+                    "default": "",
+                    "label": "AUTHENTIK_TOKEN"
+                },
+                {
+                    "name": "AUTHENTIK_HOST_BROWSER",
+                    "default": "",
+                    "label": "AUTHENTIK_HOST_BROWSER"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/authentik.png",
+            "network_mode": "host",
+            "type": 1
         }
     ]
 }

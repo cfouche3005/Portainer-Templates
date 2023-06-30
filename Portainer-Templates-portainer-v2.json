@@ -2240,6 +2240,34 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/authentik.png",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "InfluxDB",
+            "name": "influxdb",
+            "image": "influxdb:latest",
+            "description": "InfluxDB is a time series database built from the ground up to handle high write and query loads. InfluxDB is meant to be used as a backing store for any use case involving large amounts of timestamped data, including DevOps monitoring, application metrics, IoT sensor data, and real-time analytics.",
+            "categories": [
+                "Database"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8086:8086/tcp",
+                "2003:2003/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/influxdb2",
+                    "bind": "/portainer/Files/AppData/Config/InfluxDB"
+                },
+                {
+                    "container": "/var/lib/influxdb2",
+                    "bind": "/portainer/Files/AppData/Data/InfluxDB"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/influxdb.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

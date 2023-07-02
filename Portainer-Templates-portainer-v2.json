@@ -2268,6 +2268,88 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/influxdb.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Tailscale DERP",
+            "name": "tsderp",
+            "image": "fredliang/derper:latest",
+            "description": "Tailscale runs DERP relay servers distributed around the world to link your Tailscale nodes peer-to-peer as a side channel during NAT traversal, and as a fallback in case NAT traversal fails and a direct connection cannot be established.",
+            "categories": [
+                "VPN"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "10444:10444/tcp",
+                "3478:3478/udp"
+            ],
+            "volumes": [
+                {
+                    "container": "/app/certs/fullchain.pem",
+                    "bind": ""
+                },
+                {
+                    "container": "/app/certs/privkey.pem",
+                    "bind": ""
+                },
+                {
+                    "container": "/var/run/tailscale/tailscaled.sock",
+                    "bind": "/var/run/tailscale/tailscaled.sock"
+                }
+            ],
+            "env": [
+                {
+                    "name": "DERP_DOMAIN",
+                    "default": "",
+                    "label": "DERP_DOMAIN",
+                    "description": "derper server hostname"
+                },
+                {
+                    "name": "DERP_CERT_DIR",
+                    "default": "/app/certs",
+                    "label": "DERP_CERT_DIR",
+                    "description": "directory to store LetsEncrypt certs(if addr's port is :443)"
+                },
+                {
+                    "name": "DERP_CERT_MODE",
+                    "default": "manual",
+                    "label": "DERP_CERT_MODE",
+                    "description": "mode for getting a cert. possible options: manual, letsencrypt"
+                },
+                {
+                    "name": "DERP_ADDR",
+                    "default": ":10444",
+                    "label": "DERP_ADDR",
+                    "description": "listening server address"
+                },
+                {
+                    "name": "DERP_STUN",
+                    "default": "true",
+                    "label": "DERP_STUN",
+                    "description": "also run a STUN server"
+                },
+                {
+                    "name": "DERP_STUN_PORT",
+                    "default": "3478",
+                    "label": "DERP_STUN_PORT",
+                    "description": "The UDP port on which to serve STUN."
+                },
+                {
+                    "name": "DERP_HTTP_PORT",
+                    "default": "-1",
+                    "label": "DERP_HTTP_PORT",
+                    "description": "The port on which to serve HTTP. Set to -1 to disable"
+                },
+                {
+                    "name": "DERP_VERIFY_CLIENTS",
+                    "default": "true",
+                    "label": "DERP_VERIFY_CLIENTS",
+                    "description": "verify clients to this DERP server through a local tailscaled instance"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

@@ -2350,6 +2350,127 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Vaultwarden",
+            "name": "vaultwarden",
+            "image": "vaultwarden/server:latest",
+            "description": "Alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients*, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.",
+            "categories": [
+                "Web",
+                "Security"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8197:8197/tcp",
+                "3012:3012/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Data/Vaultwarden/data"
+                },
+                {
+                    "container": "/web-vault",
+                    "bind": "/portainer/Files/AppData/Data/Vaultwarden/web-vault"
+                }
+            ],
+            "env": [
+                {
+                    "name": "ROCKET_PORT",
+                    "default": "8196",
+                    "label": "ROCKET_PORT"
+                },
+                {
+                    "name": "WEBSOCKET_ENABLED",
+                    "default": "true",
+                    "label": "WEBSOCKET_ENABLED",
+                    "description": "Enables websocket notifications"
+                },
+                {
+                    "name": "WEBSOCKET_PORT",
+                    "default": "3012",
+                    "description": "Controls the WebSocket server port",
+                    "label": "WEBSOCKET_PORT"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "default": "postgresql://user:password@host[:port]/database_name",
+                    "label": "DATABASE_URL"
+                },
+                {
+                    "name": "PUSH_INSTALLATION_ID",
+                    "default": "",
+                    "label": "PUSH_INSTALLATION_ID",
+                    "description": "Enables push notifications (requires key and id from https://bitwarden.com/host)"
+                },
+                {
+                    "name": "PUSH_INSTALLATION_KEY",
+                    "default": "",
+                    "label": "PUSH_INSTALLATION_KEY",
+                    "description": "Enables push notifications (requires key and id from https://bitwarden.com/host)"
+                },
+                {
+                    "name": "SIGNUPS_ALLOWED",
+                    "default": "false",
+                    "label": "SIGNUPS_ALLOWED",
+                    "description": "Controls if new users can register"
+                },
+                {
+                    "name": "ADMIN_TOKEN",
+                    "default": "",
+                    "label": "ADMIN_TOKEN",
+                    "description": "Token for the admin interface, preferably an Argon2 PCH string"
+                },
+                {
+                    "name": "DOMAIN",
+                    "default": "",
+                    "label": "DOMAIN",
+                    "description": "The domain must match the address from where you access the server"
+                },
+                {
+                    "name": "SMTP_HOST",
+                    "default": "",
+                    "label": "SMTP_HOST"
+                },
+                {
+                    "name": "SMTP_FROM",
+                    "default": "",
+                    "label": "SMTP_FROM"
+                },
+                {
+                    "name": "SMTP_SECURITY",
+                    "default": "",
+                    "label": "SMTP_SECURITY",
+                    "description": "(\"starttls\", \"force_tls\", \"off\") Enable a secure connection. Default is \"starttls\" (Explicit - ports 587 or 25), \"force_tls\" (Implicit - port 465) or \"off\", no encryption (port 25)"
+                },
+                {
+                    "name": "SMTP_PORT",
+                    "default": "",
+                    "label": "SMTP_PORT",
+                    "description": "Ports 587 (submission) and 25 (smtp) are standard without encryption and with encryption via STARTTLS (Explicit TLS). Port 465 (submissions) is used for encrypted submission (Implicit TLS)."
+                },
+                {
+                    "name": "SMTP_USERNAME",
+                    "default": "",
+                    "label": "SMTP_USERNAME"
+                },
+                {
+                    "name": "SMTP_PASSWORD",
+                    "default": "",
+                    "label": "SMTP_PASSWORD"
+                },
+                {
+                    "name": "HIBP_API_KEY",
+                    "default": "",
+                    "label": "HIBP_API_KEY",
+                    "description": "HaveIBeenPwned API Key, request it here: https://haveibeenpwned.com/API/Key"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bitwarden.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

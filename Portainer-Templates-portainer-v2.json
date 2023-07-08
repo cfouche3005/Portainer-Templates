@@ -2517,6 +2517,83 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/coder.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Firefox Linuxserver",
+            "name": "firefox-linuxserver",
+            "image": "lscr.io/linuxserver/firefox:latest",
+            "description": "Firefox Browser, also known as Mozilla Firefox or simply Firefox, is a free and open-source web browser developed by the Mozilla Foundation and its subsidiary, the Mozilla Corporation. Firefox uses the Gecko layout engine to render web pages, which implements current and anticipated web standards.",
+            "categories": [
+                "Web",
+                "Client"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "6800:6800/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Firefox/"
+                },
+                {
+                    "container": "/config/download",
+                    "bind": "/portainer/Files/AppData/Data/Firefox/"
+                }
+            ],
+            "env": [
+                {
+                    "name": "CUSTOM_PORT",
+                    "default": "6800",
+                    "label": "CUSTOM_PORT",
+                    "description": "Internal port the container listens on for http if it needs to be swapped from the default 3000."
+                },
+                {
+                    "name": "CUSTOM_HTTPS_PORT",
+                    "default": "6801",
+                    "label": "CUSTOM_HTTPS_PORT",
+                    "description": "Internal port the container listens on for https if it needs to be swapped from the default 3001."
+                },
+                {
+                    "name": "CUSTOM_USER",
+                    "default": "root",
+                    "description": "HTTP Basic auth username, abc is default.",
+                    "label": "CUSTOM_USER"
+                },
+                {
+                    "name": "PASSWORD",
+                    "default": "",
+                    "label": "PASSWORD",
+                    "description": "HTTP Basic auth password, abc is default. If unset there will be no auth."
+                },
+                {
+                    "name": "TITLE",
+                    "default": "Firefox",
+                    "label": "TITLE",
+                    "description": "The page title displayed on the web browser, default \"KasmVNC Client\"."
+                },
+                {
+                    "name": "DRINODE",
+                    "default": "/dev/dri/renderD128",
+                    "label": "DRINODE",
+                    "description": "If mounting in /dev/dri for DRI3 GPU Acceleration allows you to specify the device to use IE /dev/dri/renderD128"
+                },
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ"
+                }
+            ],
+            "devices": [
+                {
+                    "container": "/dev/dri",
+                    "host": "/dev/dri"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefox.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

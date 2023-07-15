@@ -2363,8 +2363,7 @@
             "platform": "linux",
             "restart_policy": "unless-stopped",
             "ports": [
-                "8196:8196/tcp",
-                "3012:3012/tcp"
+                "8196:8196/tcp"
             ],
             "volumes": [
                 {
@@ -2381,18 +2380,6 @@
                     "name": "ROCKET_PORT",
                     "default": "8196",
                     "label": "ROCKET_PORT"
-                },
-                {
-                    "name": "WEBSOCKET_ENABLED",
-                    "default": "true",
-                    "label": "WEBSOCKET_ENABLED",
-                    "description": "Enables websocket notifications"
-                },
-                {
-                    "name": "WEBSOCKET_PORT",
-                    "default": "3012",
-                    "description": "Controls the WebSocket server port",
-                    "label": "WEBSOCKET_PORT"
                 },
                 {
                     "name": "DATABASE_URL",
@@ -2538,7 +2525,7 @@
                     "bind": "/portainer/Files/AppData/Config/Firefox/"
                 },
                 {
-                    "container": "/config/download",
+                    "container": "/config/Downloads",
                     "bind": "/portainer/Files/AppData/Data/Firefox/"
                 }
             ],
@@ -2592,6 +2579,41 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefox.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Dozzle",
+            "name": "dozzle",
+            "image": "amir20/dozzle:latest",
+            "description": "Dozzle is open-sourced project sponsored by Docker OSS. It is a log viewer designed to simplify the process of monitoring and debugging containers. It is a lightweight, web-based application that provides real-time log streaming, filtering, and searching capabilities through an intuitive user interface.",
+            "categories": [
+                "Docker",
+                "Monitoring"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9632:9632/tcp"
+            ],
+            "env": [
+                {
+                    "name": "DOZZLE_ADDR",
+                    "default": "9632",
+                    "label": "DOZZLE_ADDR"
+                },
+                {
+                    "name": "DOZZLE_HOSTNAME",
+                    "default": "",
+                    "label": "DOZZLE_HOSTNAME"
+                },
+                {
+                    "name": "DOZZLE_REMOTE_HOST",
+                    "default": "",
+                    "label": "DOZZLE_REMOTE_HOST"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dozzle.png",
             "network_mode": "bridge",
             "type": 1
         }

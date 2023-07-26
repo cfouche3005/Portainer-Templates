@@ -2049,11 +2049,11 @@
             "volumes": [
                 {
                     "container": "/config",
-                    "bind": "/portainer/Files/AppData/Config/PyLoad"
+                    "bind": "/portainer/Files/AppData/Config/Pyload"
                 },
                 {
                     "container": "/downloads",
-                    "bind": "/portainer/Downloads/pyload"
+                    "bind": "/portainer/Downloads/Pyload"
                 }
             ],
             "env": [
@@ -2599,7 +2599,7 @@
             "env": [
                 {
                     "name": "DOZZLE_ADDR",
-                    "default": "9632",
+                    "default": ":9632",
                     "label": "DOZZLE_ADDR"
                 },
                 {
@@ -2614,6 +2614,62 @@
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dozzle.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Headscale-Panel",
+            "name": "headscale-panel",
+            "image": "yqhdocker/headscale-panel:latest",
+            "description": "https://github.com/QianheYu/headscale-panel",
+            "categories": [
+                "VPN",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8088:8088/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/etc/headscale-panel",
+                    "bind": "/portainer/Files/AppData/Config/Headscale-Panel"
+                },
+                {
+                    "container": "/etc/headscale",
+                    "bind": "/portainer/Files/AppData/Config/Headscale"
+                },
+                {
+                    "container": "/caddy",
+                    "bind": "/portainer/Files/AppData/Config/Caddy/data/caddy"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Node-RED",
+            "name": "nodered",
+            "image": "nodered/node-red:latest",
+            "description": "Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.\nIt provides a browser-based editor that makes it easy to wire together flows using the wide range of nodes in the palette that can be deployed to its runtime in a single-click.",
+            "categories": [
+                "Automations",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "1880:1880/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Data/Node-RED/"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/node-red.png",
             "network_mode": "bridge",
             "type": 1
         }

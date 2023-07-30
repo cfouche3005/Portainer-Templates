@@ -2672,6 +2672,35 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/node-red.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Navidrome",
+            "name": "navidrome",
+            "image": "deluan/navidrome:latest",
+            "description": "Navidrome is an open source web-based music collection server and streamer. It gives you freedom to listen to your music collection from any browser or mobile device. It's like your personal Spotify!",
+            "categories": [
+                "Media",
+                "Music",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "4533:4533/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/portainer/Files/AppData/Config/Navidrome"
+                },
+                {
+                    "container": "/music",
+                    "bind": "/portainer/Files/Music/"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/navidrome.png ",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

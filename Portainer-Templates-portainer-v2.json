@@ -2705,7 +2705,7 @@
         {
             "title": "Repomanager",
             "name": "repomanager",
-            "image": "gitea.cfouche-serv.fr/cfouche/repomanager:latest",
+            "image": "gitea.cfouche.fr/cfouche/repomanager:latest",
             "description": "Repomanager is a web mirroring tool for RPM or DEB packages repositories.\nDesigned for an enterprise usage and to help deployment of packages updates on large Linux servers farms, it can create mirrors of public repositories (eg. Debian or CentOS official repos or third-party editors) and manage several snapshots versions and environments.",
             "categories": [
                 "Web",

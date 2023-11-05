@@ -2730,6 +2730,40 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/stash.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Jackett",
+            "name": "jackett",
+            "image": "lscr.io/linuxserver/jackett:latest",
+            "description": "Jackett works as a proxy server: it translates queries from apps (Sonarr, SickRage, CouchPotato, Mylar, etc) into tracker-site-specific http queries, parses the html response, then sends results back to the requesting software. This allows for getting recent uploads (like RSS) and performing searches",
+            "categories": [
+                "Downloads",
+                "Web",
+                "Indexer"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Jackett"
+                },
+                {
+                    "container": "/downloads",
+                    "bind": "/portainer/Downloads/Jackett"
+                }
+            ],
+            "env": [
+                {
+                    "name": "TZ",
+                    "default": "Europe/Paris",
+                    "label": "TZ",
+                    "description": "specify a timezone to use, see this"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jackett.png",
+            "network_mode": "host",
+            "type": 1
         }
     ]
 }

@@ -2705,7 +2705,7 @@
         {
             "title": "Repomanager",
             "name": "repomanager",
-            "image": "gitea.cfouche.fr/cfouche/repomanager:latest",
+            "image": "lbr38/repomanager:latest",
             "description": "Repomanager is a web mirroring tool for RPM or DEB packages repositories.\nDesigned for an enterprise usage and to help deployment of packages updates on large Linux servers farms, it can create mirrors of public repositories (eg. Debian or CentOS official repos or third-party editors) and manage several snapshots versions and environments.",
             "categories": [
                 "Web",
@@ -2725,6 +2725,20 @@
                 {
                     "container": "/home/repo",
                     "bind": "/portainer/Files/AppData/Data/Repomanager"
+                }
+            ],
+            "env": [
+                {
+                    "name": "FQDN",
+                    "default": "",
+                    "label": "FQDN",
+                    "description": "Fully Qualified Domain Name of the Repomanager server."
+                },
+                {
+                    "name": "MAX_UPLOAD_SIZE",
+                    "default": "128M",
+                    "label": "MAX_UPLOAD_SIZE",
+                    "description": "Max upload size in MB (default 32). Increase this value if you want to upload large packages to your repos."
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/stash.png",

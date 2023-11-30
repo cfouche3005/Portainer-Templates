@@ -2823,6 +2823,12 @@
                     "default": "1",
                     "label": "CREATE_ADMIN",
                     "description": "Set to 1 to create an admin user from environment variables."
+                },
+                {
+                    "name": "LISTEN_ADDR",
+                    "default": "0.0.0.0:8736",
+                    "label": "LISTEN_ADDR",
+                    "description": "Address to listen on. Use absolute path for a Unix socket."
                 }
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/miniflux.png",

@@ -2778,6 +2778,56 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jackett.png",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "Miniflux",
+            "name": "miniflux",
+            "image": "miniflux/miniflux:latest",
+            "description": "Miniflux is a minimalist and opinionated feed reader.",
+            "categories": [
+                "Web",
+                "RSS"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8736:8736/tcp"
+            ],
+            "env": [
+                {
+                    "name": "DATABASE_URL",
+                    "default": "",
+                    "label": "DATABASE_URL",
+                    "description": "Postgresql connection parameters. See lib/pq for more details."
+                },
+                {
+                    "name": "RUN_MIGRATIONS",
+                    "default": "1",
+                    "label": "RUN_MIGRATIONS",
+                    "description": "Set to 1 to run database migrations during application startup."
+                },
+                {
+                    "name": "ADMIN_USERNAME",
+                    "default": "",
+                    "label": "ADMIN_USERNAME",
+                    "description": "Admin user login, it's used only if CREATE_ADMIN is enabled."
+                },
+                {
+                    "name": "ADMIN_PASSWORD",
+                    "default": "",
+                    "description": "Admin user password, it's used only if CREATE_ADMIN is enabled.",
+                    "label": "ADMIN_PASSWORD"
+                },
+                {
+                    "name": "CREATE_ADMIN",
+                    "default": "1",
+                    "label": "CREATE_ADMIN",
+                    "description": "Set to 1 to create an admin user from environment variables."
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/miniflux.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

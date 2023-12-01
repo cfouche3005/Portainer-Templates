@@ -2834,6 +2834,30 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/miniflux.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Ofelia",
+            "name": "ofelia",
+            "image": "mcuadros/ofelia:latest",
+            "description": "Ofelia is a modern and low footprint job scheduler for docker environments, built on Go. Ofelia aims to be a replacement for the old fashioned cron.",
+            "categories": [
+                "Docker",
+                "Automation"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "volumes": [
+                {
+                    "container": "/var/run/docker.sock",
+                    "bind": "/var/run/docker.sock"
+                },
+                {
+                    "container": "/etc/ofelia/",
+                    "bind": "/portainer/Files/AppData/Config/Ofelia"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
+            "type": 1
         }
     ]
 }

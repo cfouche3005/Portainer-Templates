@@ -2858,6 +2858,31 @@
             ],
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png",
             "type": 1
+        },
+        {
+            "title": "Headscale-Admin",
+            "name": "headscale-admin",
+            "image": "goodieshq/headscale-admin:latest",
+            "description": "Headscale-Admin is a Web Interface for juanfont/headscale.",
+            "categories": [
+                "Web",
+                "VPN"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8936:8936/tcp"
+            ],
+            "env": [
+                {
+                    "name": "PORT",
+                    "default": "8936",
+                    "label": "PORT"
+                }
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }

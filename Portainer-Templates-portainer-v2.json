@@ -2883,6 +2883,47 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Atuin",
+            "name": "atuin",
+            "image": "ghcr.io/atuinsh/atuin:latest",
+            "description": "Sync, search and backup shell history with Atuin",
+            "categories": [
+                "Terminal",
+                "Sync"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "8888:8888/tcp"
+            ],
+            "env": [
+                {
+                    "name": "ATUIN_HOST",
+                    "default": "0.0.0.0",
+                    "label": "ATUIN_HOST"
+                },
+                {
+                    "name": "ATUIN_OPEN_REGISTRATION",
+                    "default": "true",
+                    "label": "ATUIN_OPEN_REGISTRATION"
+                },
+                {
+                    "name": "ATUIN_PORT",
+                    "default": "8888",
+                    "label": "ATUIN_PORT"
+                },
+                {
+                    "name": "ATUIN_DB_URI",
+                    "default": "",
+                    "label": "ATUIN_DB_URI"
+                }
+            ],
+            "command": "server start",
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/terminal.png",
+            "network_mode": "host",
+            "type": 1
         }
     ]
 }

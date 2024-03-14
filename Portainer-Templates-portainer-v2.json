@@ -3058,6 +3058,52 @@
             "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jdownloader2.png",
             "network_mode": "host",
             "type": 1
+        },
+        {
+            "title": "Feishin",
+            "name": "feishin",
+            "image": "ghcr.io/jeffvli/feishin:latest",
+            "description": "Rewrite of Sonixd.",
+            "categories": [
+                "Media",
+                "Music",
+                "Web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9180:9180/tcp"
+            ],
+            "env": [
+                {
+                    "name": "SERVER_NAME",
+                    "default": "",
+                    "description": "",
+                    "label": "SERVER_NAME"
+                },
+                {
+                    "name": "SERVER_TYPE",
+                    "default": "",
+                    "description": "one of jellyfin or navidrome",
+                    "label": "SERVER_TYPE"
+                },
+                {
+                    "name": "SERVER_URL",
+                    "default": "",
+                    "description": "",
+                    "label": "SERVER_URL"
+                },
+                {
+                    "name": "SERVER_LOCK",
+                    "default": "true",
+                    "description": "To prevent users from changing these settings, pass SERVER_LOCK=true. This can only be set if all three of the previous values are set.",
+                    "label": "SERVER_LOCK"
+                }
+
+            ],
+            "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/navidrome.png",
+            "network_mode": "host",
+            "type": 1
         }
     ]
 }
